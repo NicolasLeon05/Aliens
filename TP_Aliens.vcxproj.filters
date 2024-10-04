@@ -30,6 +30,9 @@
     <ClCompile Include="src\Scenes\Scene_MainMenu.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Interface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -40,6 +43,9 @@
     </ClInclude>
     <ClInclude Include="src\Scenes\Scene_MainMenu.h">
       <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Interface</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
