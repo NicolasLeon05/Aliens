@@ -30,7 +30,7 @@
     <ClCompile Include="src\Scenes\Scene_MainMenu.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
+    <ClCompile Include="src\Interface\Button.cpp">
       <Filter>Interface</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,7 +44,7 @@
     <ClInclude Include="src\Scenes\Scene_MainMenu.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
+    <ClInclude Include="src\Interface\Button.h">
       <Filter>Interface</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,6 +5,10 @@
 #include "Scene_MainMenu.h"
 #include "Scene_Gameplay.h"
 
+#include "Button.h"
+
+using namespace Button;
+
 namespace Game
 {
 	enum class CurrentScene
@@ -41,6 +45,8 @@ namespace Game
 	{
 		currentScene = CurrentScene::MainMenu;
 		InitWindow(screenWidth, screenHeight, "Aliens");
+
+		MainMenu::Init();
 	}
 
 
@@ -50,8 +56,9 @@ namespace Game
 		{
 		case Game::CurrentScene::MainMenu:
 		{
-			if (IsKeyReleased(KEY_SPACE))
+			if (IsButtonPressed(MainMenu::play))
 				currentScene = CurrentScene::Gameplay;
+
 			break;
 		}
 

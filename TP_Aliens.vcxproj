@@ -19,15 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Button.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\Interface\Button.cpp" />
     <ClCompile Include="src\Scenes\Scene_Gameplay.cpp" />
     <ClCompile Include="src\Scenes\Scene_MainMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Button.h" />
     <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\Interface\Button.h" />
     <ClInclude Include="src\Scenes\Scene_Gameplay.h" />
     <ClInclude Include="src\Scenes\Scene_MainMenu.h" />
   </ItemGroup>

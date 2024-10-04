@@ -1,4 +1,7 @@
 #include "Button.h"
+#include <iostream>
+
+using namespace std;
 
 
 namespace Button
@@ -11,8 +14,6 @@ namespace Button
 			DrawButton(button, RED);
 		else
 			DrawButton(button, ORANGE);
-
-		DrawText("GAMEPLAY", GetScreenHeight() / 2, 40, 40, WHITE);
 	}
 
 	Button Create(const char* text, float recX, float recY, float recWidth, float recHeight)
@@ -32,10 +33,10 @@ namespace Button
 	{
 		Vector2 mousePosition = GetMousePosition();
 		//Mouse hover
-		if (mousePosition.x > button.rec.x - (button.rec.width / 2) &&
-			mousePosition.x < button.rec.x + (button.rec.width / 2) &&
-			mousePosition.y  < button.rec.y + (button.rec.height / 2) &&
-			mousePosition.y  > button.rec.y - (button.rec.height / 2))
+		if (mousePosition.x < button.rec.x + button.rec.width &&
+			mousePosition.x > button.rec.x &&
+			mousePosition.y > button.rec.y &&
+			mousePosition.y < button.rec.y + button.rec.height)
 		{
 			button.isSelected = true;
 			return true;
@@ -51,7 +52,7 @@ namespace Button
 	{
 		bool pressed = false;
 
-		if (IsMouseButtonReleased(1))
+		if (IsMouseButtonReleased(0))
 			pressed = true;
 
 		if (IsButtonSelected(button) && pressed)
@@ -68,5 +69,11 @@ namespace Button
 		int height = static_cast <int> (button.rec.height);
 
 		DrawRectangle(x, y, width, height, color);
+
+		int textLength = MeasureText(button.text, 40);
+		int textX = static_cast<int> (button.rec.x + button.rec.width / 2 - textLength / 2);
+		int textY = static_cast<int> (button.rec.y + button.rec.height / 2 - 40/2);
+		
+		DrawText(button.text, textX, textY, 40, WHITE);
 	}
 }
