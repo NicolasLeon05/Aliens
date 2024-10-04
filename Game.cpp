@@ -3,6 +3,9 @@
 
 namespace Game
 {
+	const int screenWidth = 1024;
+	const int screenHeight = 768;
+
 	void Init();
 	void Update();
 	void Draw();
@@ -17,7 +20,7 @@ namespace Game
 			Update();
 			Draw();
 
-		} while (true);
+		} while (!WindowShouldClose());
 
 		Deinit();
 	}
@@ -25,7 +28,7 @@ namespace Game
 
 	void Init()
 	{
-
+		InitWindow(screenWidth, screenHeight, "Aliens");
 	}
 
 
@@ -37,12 +40,16 @@ namespace Game
 
 	void Draw()
 	{
+		BeginDrawing();
 
+		DrawCircle(screenWidth / 2, screenHeight / 2, 30, RED);
+
+		EndDrawing();
 	}
 
 
 	void Deinit()
 	{
-
+		CloseWindow();
 	}
 }

@@ -18,6 +18,13 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -84,7 +91,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/lib/sigil;$(SolutionDir)/src;$(SolutionDir)/src/Scenes;$(SolutionDir)/src/Objects;$(SolutionDir)/src/Utils;%(AdditionalLibraryDirectories);$(SolutionDir)/src/Interface</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/lib/Raylib5.0;$(SolutionDir)/src;$(SolutionDir)/src/Scenes;$(SolutionDir)/src/Objects;$(SolutionDir)/src/Utils;%(AdditionalLibraryDirectories);$(SolutionDir)/src/Interface</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
@@ -102,7 +109,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/lib/sigil;$(SolutionDir)/src;$(SolutionDir)/src/Scenes;$(SolutionDir)/src/Objects;$(SolutionDir)/src/Utils;%(AdditionalLibraryDirectories);$(SolutionDir)/src/Interface</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/lib/Raylib5.0;$(SolutionDir)/src;$(SolutionDir)/src/Scenes;$(SolutionDir)/src/Objects;$(SolutionDir)/src/Utils;%(AdditionalLibraryDirectories);$(SolutionDir)/src/Interface</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
@@ -143,9 +150,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
