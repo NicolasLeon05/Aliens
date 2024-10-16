@@ -1,12 +1,19 @@
 #include "Scene_Gameplay.h"
 
 #include "raylib.h"
+#include "Player.h"
+
+namespace PlayerNS = Player;
+using namespace PlayerNS;
+
+#include <iostream>  //Para debug
+using namespace std; //Para debug
 
 namespace Gameplay
 {
 	void Init()
 	{
-
+		PlayerNS::Init();
 	}
 
 
@@ -18,7 +25,7 @@ namespace Gameplay
 
 	void Draw()
 	{
-		ClearBackground(BLACK);
-		DrawText("GAMEPLAY", GetScreenHeight() / 2, 40, 40, RED);
+		PlayerNS::Draw();
+		cout << "aaaa" << endl;
 	}
 }

@@ -22,12 +22,14 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\Interface\Button.cpp" />
+    <ClCompile Include="src\Objects\Player.cpp" />
     <ClCompile Include="src\Scenes\Scene_Gameplay.cpp" />
     <ClCompile Include="src\Scenes\Scene_MainMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\Interface\Button.h" />
+    <ClInclude Include="src\Objects\Player.h" />
     <ClInclude Include="src\Scenes\Scene_Gameplay.h" />
     <ClInclude Include="src\Scenes\Scene_MainMenu.h" />
   </ItemGroup>

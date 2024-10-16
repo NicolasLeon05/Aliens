@@ -47,6 +47,7 @@ namespace Game
 		InitWindow(screenWidth, screenHeight, "Aliens");
 
 		MainMenu::Init();
+		Gameplay::Init();
 	}
 
 
@@ -65,6 +66,8 @@ namespace Game
 
 		case Game::CurrentScene::Gameplay:
 		{
+			Gameplay::Update();
+
 			if (IsKeyReleased(KEY_SPACE))
 				currentScene = CurrentScene::MainMenu;
 			break;

@@ -33,6 +33,9 @@
     <ClCompile Include="src\Interface\Button.cpp">
       <Filter>Interface</Filter>
     </ClCompile>
+    <ClCompile Include="src\Objects\Player.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -46,6 +49,9 @@
     </ClInclude>
     <ClInclude Include="src\Interface\Button.h">
       <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Objects\Player.h">
+      <Filter>Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
