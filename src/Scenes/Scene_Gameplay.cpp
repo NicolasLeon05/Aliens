@@ -11,9 +11,6 @@ using namespace std; //Para debug
 
 namespace Gameplay
 {
-	static float playerRotation = 0.0f;
-
-
 	void Init()
 	{
 		PlayerNS::Init();
@@ -28,7 +25,7 @@ namespace Gameplay
 
 	void Draw()
 	{
-		PlayerNS::Draw(playerRotation);
+		PlayerNS::Draw();
 		cout << "aaaa" << endl;
 	}
 }

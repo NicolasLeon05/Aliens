@@ -2,22 +2,23 @@
 
 #include "raylib.h"
 
-#include "Rec.h"
-
 namespace Player
 {
 	struct Player
 	{
 		Texture2D sprite;
-		float scale;
+		Rectangle source;
+		Rectangle destination;
 
 		float x;
 		float y;
+		float scale;
+		float rotation;
 	};
 
 	extern Player player;
 
 	void Init();
 
-	void Draw(float rotation);
+	void Draw();
 }
