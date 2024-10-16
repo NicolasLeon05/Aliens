@@ -8,14 +8,16 @@ namespace Player
 {
 	struct Player
 	{
-		MyRec::Rec rec;
 		Texture2D sprite;
-		Color color;
+		float scale;
+
+		float x;
+		float y;
 	};
 
 	extern Player player;
 
 	void Init();
 
-	void Draw();
+	void Draw(float rotation);
 }
