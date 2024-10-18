@@ -68,7 +68,7 @@ namespace Game
 		{
 			Gameplay::Update();
 
-			if (IsKeyReleased(KEY_SPACE))
+			if (IsKeyReleased(KEY_ESCAPE))
 				currentScene = CurrentScene::MainMenu;
 			break;
 		}
