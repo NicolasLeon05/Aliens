@@ -19,13 +19,10 @@ namespace Gameplay
 	static float r;
 	static float angle;
 
-	void SetPlayerRotation();
-
-
-	void SetPlayerAcceleration();
-
-
-	void MovePlayer();
+	static void SetPlayerRotation();
+	static void SetPlayerAcceleration();
+	static void MovePlayer();
+	static void KeepPlayerOnScreen();
 
 
 
@@ -43,6 +40,7 @@ namespace Gameplay
 			SetPlayerAcceleration();
 		}
 		MovePlayer();
+		KeepPlayerOnScreen();
 	}
 
 
@@ -93,7 +91,7 @@ namespace Gameplay
 	void MovePlayer()
 	{
 #ifdef _DEBUG
-		cout << "speed x: " << player.speed.x << " speed y: " << player.speed.y << endl << endl;
+		//cout << "speed x: " << player.speed.x << " speed y: " << player.speed.y << endl << endl;
 #endif // _DEBUG
 
 		player.pos.x += player.speed.x * GetFrameTime();
@@ -102,4 +100,27 @@ namespace Gameplay
 		player.destination.x = player.pos.x;
 		player.destination.y = player.pos.y;
 	}
+
+
+	void KeepPlayerOnScreen()
+	{
+		float spriteWidth = static_cast <float> (player.sprite.width) * player.scale / 2;
+		float spriteHeight = static_cast <float> (player.sprite.height) * player.scale / 2;
+
+		//Check x axis
+		if (player.pos.x - spriteWidth > GetScreenWidth())
+			player.pos.x = 0 - spriteWidth;
+		else if (player.pos.x + spriteWidth < 0)
+			player.pos.x = static_cast <float> (GetScreenWidth()) + spriteWidth;
+
+		//Check y axis
+		if (player.pos.y - spriteHeight > GetScreenHeight())
+			player.pos.y = 0 - spriteHeight;
+		else if (player.pos.y + spriteHeight < 0)
+			player.pos.y = static_cast <float>(GetScreenHeight()) + spriteHeight;
+
+		player.destination.x = player.pos.x;
+		player.destination.y = player.pos.y;
+	}
+
 }
