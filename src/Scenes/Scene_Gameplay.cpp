@@ -21,6 +21,10 @@ namespace Gameplay
 
 	void SetPlayerRotation();
 
+
+	void SetPlayerAcceleration();
+
+
 	void MovePlayer();
 
 
@@ -34,6 +38,11 @@ namespace Gameplay
 	void Update()
 	{
 		SetPlayerRotation();
+		if (IsMouseButtonDown(0))
+		{
+			SetPlayerAcceleration();
+		}
+		MovePlayer();
 	}
 
 
@@ -66,8 +75,31 @@ namespace Gameplay
 	}
 
 
+	void SetPlayerAcceleration()
+	{
+		float angleInRadians = angle * (PI / 180);
+
+		player.speed.x += player.acceleration * cos(angleInRadians);
+		player.speed.y += (-player.acceleration) * sin(angleInRadians);
+
+		float speedMagnitude = static_cast <float> (sqrt(pow(player.speed.x, 2) + pow(player.speed.y, 2)));
+		if (speedMagnitude > player.maxAcceleration) {
+			player.speed.x *= (player.maxAcceleration / speedMagnitude);
+			player.speed.y *= (player.maxAcceleration / speedMagnitude);
+		}
+	}
+
+
 	void MovePlayer()
 	{
+#ifdef _DEBUG
+		cout << "speed x: " << player.speed.x << " speed y: " << player.speed.y << endl << endl;
+#endif // _DEBUG
 
+		player.pos.x += player.speed.x * GetFrameTime();
+		player.pos.y += player.speed.y * GetFrameTime();
+
+		player.destination.x = player.pos.x;
+		player.destination.y = player.pos.y;
 	}
 }
