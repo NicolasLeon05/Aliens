@@ -21,10 +21,12 @@ namespace Game
 	const int screenWidth = 1024;
 	const int screenHeight = 768;
 
-	void Init();
-	void Update();
-	void Draw();
-	void Deinit();
+	static void Init();
+	static void Update();
+	static void Draw();
+	static void Deinit();
+
+	static void ResetGame();
 
 	void Run()
 	{
@@ -35,7 +37,7 @@ namespace Game
 			Update();
 			Draw();
 
-		} while (!WindowShouldClose());
+		} while (!WindowShouldClose() || currentScene != CurrentScene::MainMenu);
 
 		Deinit();
 	}
@@ -69,7 +71,7 @@ namespace Game
 			Gameplay::Update();
 
 			if (IsKeyReleased(KEY_ESCAPE))
-				currentScene = CurrentScene::MainMenu;
+				ResetGame(); //Change for a pause screen
 			break;
 		}
 
@@ -116,5 +118,12 @@ namespace Game
 	void Deinit()
 	{
 		CloseWindow();
+	}
+
+
+	void ResetGame()
+	{
+		currentScene = CurrentScene::MainMenu;
+		Gameplay::Init();
 	}
 }
