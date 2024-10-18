@@ -10,8 +10,7 @@ namespace Player
 		Rectangle source;
 		Rectangle destination;
 
-		float x;
-		float y;
+		Vector2 pos;
 		float scale;
 		float rotation;
 	};
