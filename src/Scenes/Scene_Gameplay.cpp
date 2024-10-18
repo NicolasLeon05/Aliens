@@ -7,8 +7,11 @@
 namespace PlayerNS = Player;
 using namespace PlayerNS;
 
-#include <iostream>  //Para debug
-using namespace std; //Para debug
+#ifdef _DEBUG
+#include <iostream>
+using namespace std;
+#endif // DEBUG
+
 
 namespace Gameplay
 {
@@ -16,7 +19,10 @@ namespace Gameplay
 	static float r;
 	static float angle;
 
-	static float GetPlayerRotation();
+	void SetPlayerRotation();
+
+	void MovePlayer();
+
 
 
 	void Init()
@@ -27,7 +33,7 @@ namespace Gameplay
 
 	void Update()
 	{
-		
+		SetPlayerRotation();
 	}
 
 
@@ -38,7 +44,7 @@ namespace Gameplay
 	}
 
 
-	float GetPlayerRotation()
+	void SetPlayerRotation()
 	{
 		//Get polar coordinates of the mouse
 		mousePosition = { GetMousePosition().x - player.pos.x, player.pos.y - GetMousePosition().y };
@@ -57,5 +63,11 @@ namespace Gameplay
 
 		//Assing player rotation
 		player.rotation = -angle + 90;
+	}
+
+
+	void MovePlayer()
+	{
+
 	}
 }

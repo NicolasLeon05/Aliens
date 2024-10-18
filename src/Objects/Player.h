@@ -9,10 +9,13 @@ namespace Player
 		Texture2D sprite;
 		Rectangle source;
 		Rectangle destination;
-
-		Vector2 pos;
 		float scale;
 		float rotation;
+
+		Vector2 pos;
+		Vector2 speed;
+		float maxAcceleration;
+		float acceleration;
 	};
 
 	extern Player player;

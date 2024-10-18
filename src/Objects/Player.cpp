@@ -16,6 +16,9 @@ namespace Player
 		player.destination = { player.pos.x, player.pos.y, static_cast<float>(player.sprite.width * player.scale), static_cast<float>(player.sprite.height * player.scale) };
 		spriteCenter = { static_cast<float>(player.sprite.width * player.scale) / 2, static_cast<float>(player.sprite.height * player.scale) / 2 };
 
+		player.maxAcceleration = 500;
+		acceleration = 15;
+		player.speed = { 0,0 };
 	}
 
 	void Draw()
