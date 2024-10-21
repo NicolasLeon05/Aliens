@@ -35,7 +35,7 @@ namespace Gameplay
 	void Update()
 	{
 		SetPlayerRotation();
-		if (IsMouseButtonDown(0))
+		if (IsMouseButtonDown(1))
 		{
 			SetPlayerAcceleration();
 		}
