@@ -7,7 +7,10 @@
 
 #include "Button.h"
 
+#include "SoundManager.h"
+
 using namespace Button;
+using namespace SoundManager;
 
 namespace Game
 {
@@ -21,6 +24,8 @@ namespace Game
 	const int screenWidth = 1024;
 	const int screenHeight = 768;
 
+	static Music music;
+
 	static void Init();
 	static void Update();
 	static void Draw();
@@ -31,7 +36,7 @@ namespace Game
 	void Run()
 	{
 		Init();
-
+		PlayMusicStream(music);
 		do
 		{
 			Update();
@@ -47,6 +52,8 @@ namespace Game
 	{
 		currentScene = CurrentScene::MainMenu;
 		InitWindow(screenWidth, screenHeight, "Aliens");
+		SoundManager::Init();
+		music = menuMusic; //Sin esto no reproduce la musica, pero si cambio a la escena de gameplay no reproduce tampoco
 
 		MainMenu::Init();
 		Gameplay::Init();
@@ -60,7 +67,13 @@ namespace Game
 		case Game::CurrentScene::MainMenu:
 		{
 			if (IsButtonPressed(MainMenu::play))
+			{
+				StopMusicStream(music);
+				music = gameplayMusic;
+				PlayMusicStream(music);
 				currentScene = CurrentScene::Gameplay;
+			}
+
 
 			break;
 		}
@@ -69,6 +82,7 @@ namespace Game
 		case Game::CurrentScene::Gameplay:
 		{
 			Gameplay::Update();
+
 
 			if (IsKeyReleased(KEY_ESCAPE))
 				ResetGame(); //Change for a pause screen
@@ -81,6 +95,7 @@ namespace Game
 			break;
 		}
 		}
+		UpdateMusicStream(music);
 	}
 
 
@@ -117,6 +132,8 @@ namespace Game
 
 	void Deinit()
 	{
+		UnloadMusicStream(music);  // Descarga la música
+		CloseAudioDevice();
 		CloseWindow();
 	}
 
@@ -124,6 +141,11 @@ namespace Game
 	void ResetGame()
 	{
 		currentScene = CurrentScene::MainMenu;
+
+		StopMusicStream(music);  
+		music = menuMusic;       
+		PlayMusicStream(music);
+
 		Gameplay::Init();
 	}
 }

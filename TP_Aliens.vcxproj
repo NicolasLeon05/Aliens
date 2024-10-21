@@ -25,6 +25,7 @@
     <ClCompile Include="src\Objects\Player.cpp" />
     <ClCompile Include="src\Scenes\Scene_Gameplay.cpp" />
     <ClCompile Include="src\Scenes\Scene_MainMenu.cpp" />
+    <ClCompile Include="src\Utils\SoundManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h" />
@@ -32,6 +33,7 @@
     <ClInclude Include="src\Objects\Player.h" />
     <ClInclude Include="src\Scenes\Scene_Gameplay.h" />
     <ClInclude Include="src\Scenes\Scene_MainMenu.h" />
+    <ClInclude Include="src\Utils\SoundManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

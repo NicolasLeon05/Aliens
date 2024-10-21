@@ -36,6 +36,9 @@
     <ClCompile Include="src\Objects\Player.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
+    <ClCompile Include="src\Utils\SoundManager.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -52,6 +55,9 @@
     </ClInclude>
     <ClInclude Include="src\Objects\Player.h">
       <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utils\SoundManager.h">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
