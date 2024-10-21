@@ -7,7 +7,7 @@ namespace Player
 
 	void Init()
 	{
-		player.sprite = LoadTexture("res/SpaceShip.png");
+		player.sprite = LoadTexture("res/Sprite/SpaceShip.png");
 		player.scale = 0.15f;
 		player.source = { 0,0, static_cast<float>(player.sprite.width), static_cast<float>(player.sprite.height) };
 		player.pos.x = static_cast<float>(GetScreenWidth() / 2);
