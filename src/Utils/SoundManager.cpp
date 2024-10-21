@@ -8,7 +8,7 @@ namespace SoundManager
 	void Init()
 	{
 		InitAudioDevice();
-		menuMusic = LoadMusicStream("res/Music/Asteroids_Adventure.wav");
-		gameplayMusic = LoadMusicStream("res/Music/Pixel_Stars.wav");
+		menuMusic = LoadMusicStream("res/Music/Asteroids_Adventure.mp3");
+		gameplayMusic = LoadMusicStream("res/Music/Pixel_Stars.mp3");
 	}
 }
