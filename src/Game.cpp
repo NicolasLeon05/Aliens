@@ -53,7 +53,7 @@ namespace Game
 		currentScene = CurrentScene::MainMenu;
 		InitWindow(screenWidth, screenHeight, "Aliens");
 		SoundManager::Init();
-		music = menuMusic; //Sin esto no reproduce la musica, pero si cambio a la escena de gameplay no reproduce tampoco
+		music = menuMusic;
 
 		MainMenu::Init();
 		Gameplay::Init();
@@ -73,7 +73,6 @@ namespace Game
 				PlayMusicStream(music);
 				currentScene = CurrentScene::Gameplay;
 			}
-
 
 			break;
 		}
