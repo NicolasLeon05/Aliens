@@ -4,6 +4,10 @@
 #include "Player.h"
 #include "math.h"
 
+#include "SoundManager.h"
+
+using namespace SoundManager;
+
 namespace PlayerNS = Player;
 using namespace PlayerNS;
 
@@ -19,6 +23,8 @@ namespace Gameplay
 	static float r;
 	static float angle;
 
+	static Texture2D background;
+
 	static void SetPlayerRotation();
 	static void SetPlayerAcceleration();
 	static void MovePlayer();
@@ -29,6 +35,7 @@ namespace Gameplay
 	void Init()
 	{
 		PlayerNS::Init();
+		background = LoadTexture("res/Backgrounds/GameplayBackground.png");
 	}
 
 
@@ -37,8 +44,16 @@ namespace Gameplay
 		SetPlayerRotation();
 		if (IsMouseButtonDown(1))
 		{
+			if (!IsSoundPlaying(accelerateSound))
+				PlaySound(accelerateSound);
+
 			SetPlayerAcceleration();
 		}
+		else
+		{
+			StopSound(accelerateSound);
+		}
+
 		MovePlayer();
 		KeepPlayerOnScreen();
 	}
@@ -47,6 +62,7 @@ namespace Gameplay
 	void Draw()
 	{
 		ClearBackground(BLACK);
+		DrawTexture(background, 0, 0, WHITE);
 		PlayerNS::Draw();
 	}
 
