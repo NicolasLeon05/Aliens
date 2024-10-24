@@ -1,11 +1,6 @@
-#include "Scene_MainMenu.h"
+#include "Scene_Tutorial.h"
 
-#include "raylib.h"
-
-
-namespace Bton = Button;
-
-namespace MainMenu
+namespace Tutorial
 {
 	Bton::Button play;
 	Bton::Button tutorial;
@@ -23,9 +18,6 @@ namespace MainMenu
 		screenHeight = static_cast<float>(GetScreenHeight());
 		screenCenterX = GetScreenWidth() / 2 - buttonWidth / 2;
 
-		play = Bton::Create("Play", screenCenterX, static_cast<float>(screenHeight / 6 * 2), buttonWidth, buttonHeight);
-		tutorial = Bton::Create("Tutorial", screenCenterX, static_cast<float>(screenHeight / 6 * 3), buttonWidth, buttonHeight);
-		credits = Bton::Create("Credits", screenCenterX, static_cast<float>(screenHeight / 6 * 4), buttonWidth, buttonHeight);
 		exit = Bton::Create("Exit", screenCenterX, static_cast<float>(screenHeight / 6 * 5), buttonWidth, buttonHeight);
 	}
 
@@ -44,5 +36,4 @@ namespace MainMenu
 		Bton::Draw(credits, fontSize);
 		Bton::Draw(exit, fontSize);
 	}
-
 }
