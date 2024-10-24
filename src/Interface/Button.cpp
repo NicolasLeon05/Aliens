@@ -6,14 +6,14 @@ using namespace std;
 
 namespace Button
 {
-	void DrawButton(Button button, Color color);
+	void DrawButton(Button button, Color color, int fontSize);
 
-	void Draw(Button button)
+	void Draw(Button button, int fontSize)
 	{
 		if (button.isSelected)
-			DrawButton(button, RED);
+			DrawButton(button, RED, fontSize);
 		else
-			DrawButton(button, ORANGE);
+			DrawButton(button, ORANGE, fontSize);
 	}
 
 	Button Create(const char* text, float recX, float recY, float recWidth, float recHeight)
@@ -61,7 +61,7 @@ namespace Button
 			return false;
 	}
 
-	void DrawButton(Button button, Color color)
+	void DrawButton(Button button, Color color, int fontSize)
 	{
 		int x = static_cast <int> (button.rec.x);
 		int y = static_cast <int> (button.rec.y);
@@ -70,10 +70,10 @@ namespace Button
 
 		DrawRectangle(x, y, width, height, color);
 
-		int textLength = MeasureText(button.text, 40);
+		int textLength = MeasureText(button.text, fontSize);
 		int textX = static_cast<int> (button.rec.x + button.rec.width / 2 - textLength / 2);
-		int textY = static_cast<int> (button.rec.y + button.rec.height / 2 - 40/2);
-		
-		DrawText(button.text, textX, textY, 40, WHITE);
+		int textY = static_cast<int> (button.rec.y + button.rec.height / 2 - fontSize / 2);
+
+		DrawText(button.text, textX, textY, fontSize, WHITE);
 	}
 }
