@@ -4,6 +4,7 @@
 
 #include "Scene_MainMenu.h"
 #include "Scene_Gameplay.h"
+#include "Scene_Tutorial.h"
 
 #include "Button.h"
 
@@ -16,13 +17,15 @@ namespace Game
 {
 	enum class CurrentScene
 	{
-		MainMenu, Gameplay
+		MainMenu, Gameplay, Tutorial
 	};
 
 	CurrentScene currentScene;
 
 	const int screenWidth = 1024;
 	const int screenHeight = 768;
+
+	static float gameShouldClose = false;
 
 	static Music music;
 
@@ -42,7 +45,7 @@ namespace Game
 			Update();
 			Draw();
 
-		} while (!WindowShouldClose() || currentScene != CurrentScene::MainMenu);
+		} while (!gameShouldClose);
 
 		Deinit();
 	}
@@ -52,16 +55,22 @@ namespace Game
 	{
 		currentScene = CurrentScene::MainMenu;
 		InitWindow(screenWidth, screenHeight, "Aliens");
+
+		SetExitKey(0);
+
 		SoundManager::Init();
 		music = menuMusic;
 
 		MainMenu::Init();
+		Tutorial::Init();
 		Gameplay::Init();
 	}
 
 
 	void Update()
 	{
+		gameShouldClose = WindowShouldClose();
+
 		switch (currentScene)
 		{
 		case Game::CurrentScene::MainMenu:
@@ -72,6 +81,14 @@ namespace Game
 				music = gameplayMusic;
 				PlayMusicStream(music);
 				currentScene = CurrentScene::Gameplay;
+			}
+			else if (IsButtonPressed(MainMenu::tutorial))
+			{
+				currentScene = CurrentScene::Tutorial;
+			}
+			else if (IsButtonPressed(MainMenu::exit))
+			{
+				gameShouldClose = true;
 			}
 
 			break;
@@ -88,6 +105,14 @@ namespace Game
 			break;
 		}
 
+		case Game::CurrentScene::Tutorial:
+		{
+			if (IsButtonPressed(Tutorial::exit))
+			{
+				currentScene = CurrentScene::MainMenu;
+			}
+			break;
+		}
 
 		default:
 		{
@@ -117,6 +142,11 @@ namespace Game
 			break;
 		}
 
+		case Game::CurrentScene::Tutorial:
+		{
+			Tutorial::Draw();
+			break;
+		}
 
 		default:
 		{
