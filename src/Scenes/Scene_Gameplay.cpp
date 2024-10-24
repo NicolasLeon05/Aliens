@@ -2,42 +2,52 @@
 
 #include "raylib.h"
 #include "Player.h"
+#include "Enemy.h"
 #include "math.h"
 
 #include "SoundManager.h"
 
-using namespace SoundManager;
+#include <iostream>
 
 namespace PlayerNS = Player;
 using namespace PlayerNS;
 
-#ifdef _DEBUG
-#include <iostream>
+namespace EnemyNS = Enemy;
+using namespace EnemyNS;
+
+using namespace SoundManager;
+
 using namespace std;
-#endif // DEBUG
 
 
 namespace Gameplay
 {
 	static Vector2 mousePosition;
 	static float r;
-	static float angle;
+	static float playerAngle; //Quizas tendria que ser una variable de player
 
 	static Texture2D background;
 
+	//Player movement
 	static void SetPlayerRotation();
 	static void SetPlayerAcceleration();
 	static void MovePlayer();
 	static void KeepPlayerOnScreen();
 
+	//Enemies movement
+	static void ManageEnemies();
+	static void MoveEnemy(EnemyNS::Enemy& enemy);
+	static void KeepEnemyOnScreen(EnemyNS::Enemy& enemy);
 
+	//Collisions
+	static bool PlayerEnemyAreColliding(EnemyNS::Enemy& enemy);
 
 	void Init()
 	{
 		PlayerNS::Init();
+		EnemyNS::Init();
 		background = LoadTexture("res/Backgrounds/GameplayBackground.png");
 	}
-
 
 	void Update()
 	{
@@ -56,15 +66,18 @@ namespace Gameplay
 
 		MovePlayer();
 		KeepPlayerOnScreen();
-	}
 
+		ManageEnemies();
+	}
 
 	void Draw()
 	{
 		ClearBackground(BLACK);
 		DrawTexture(background, 0, 0, WHITE);
 		PlayerNS::Draw();
+		EnemyNS::Draw();
 	}
+
 
 
 	void SetPlayerRotation()
@@ -73,25 +86,24 @@ namespace Gameplay
 		mousePosition = { GetMousePosition().x - player.pos.x, player.pos.y - GetMousePosition().y };
 
 		//Get angle in radians
-		angle = atan(mousePosition.y / mousePosition.x);
+		playerAngle = atan(mousePosition.y / mousePosition.x);
 
 		//Convert to degrees
-		angle *= (180 / PI);
+		playerAngle *= (180 / PI);
 
 		//Check cuadrant variants
 		if (mousePosition.x < 0)
-			angle += 180.0f;
+			playerAngle += 180.0f;
 		else if (mousePosition.y < 0)
-			angle += 360.0f;
+			playerAngle += 360.0f;
 
 		//Assing player rotation
-		player.rotation = -angle + 90;
+		player.rotation = -playerAngle + 90;
 	}
-
 
 	void SetPlayerAcceleration()
 	{
-		float angleInRadians = angle * (PI / 180);
+		float angleInRadians = playerAngle * (PI / 180);
 
 		player.speed.x += player.acceleration * cos(angleInRadians);
 		player.speed.y += (-player.acceleration) * sin(angleInRadians);
@@ -102,7 +114,6 @@ namespace Gameplay
 			player.speed.y *= (player.maxAcceleration / speedMagnitude);
 		}
 	}
-
 
 	void MovePlayer()
 	{
@@ -115,8 +126,9 @@ namespace Gameplay
 
 		player.destination.x = player.pos.x;
 		player.destination.y = player.pos.y;
-	}
 
+		player.collisionShape.center = player.pos;
+	}
 
 	void KeepPlayerOnScreen()
 	{
@@ -137,6 +149,58 @@ namespace Gameplay
 
 		player.destination.x = player.pos.x;
 		player.destination.y = player.pos.y;
+	}
+
+	void ManageEnemies()
+	{
+		for (int i = 0; i < static_cast <int>(enemies.size()); i++)
+		{
+			if (enemies[i].isActive)
+			{
+				MoveEnemy(enemies[i]);
+				KeepEnemyOnScreen(enemies[i]);
+				if (PlayerEnemyAreColliding(enemies[i]))
+				{
+					enemies[i].isActive = false;
+					DivideEnemy(enemies[i]);
+				}
+			}
+		}
+	}
+
+	void MoveEnemy(EnemyNS::Enemy& enemy)
+	{
+		enemy.collisionShape.center.x += enemy.speed.x * GetFrameTime();
+		enemy.collisionShape.center.y += enemy.speed.y * GetFrameTime();
+		enemy.collisionShape.center.x = enemy.collisionShape.center.x;
+		enemy.collisionShape.center.y = enemy.collisionShape.center.y;
+	}
+
+	void KeepEnemyOnScreen(EnemyNS::Enemy& enemy)
+	{
+		//Check x axis
+		if (enemy.collisionShape.center.x - enemy.collisionShape.radius > GetScreenWidth())
+			enemy.collisionShape.center.x = 0 - enemy.collisionShape.radius;
+		else if (enemy.collisionShape.center.x + enemy.collisionShape.radius < 0)
+			enemy.collisionShape.center.x = static_cast <float> (GetScreenWidth()) + enemy.collisionShape.radius;
+
+		//Check y axis
+		if (enemy.collisionShape.center.y - enemy.collisionShape.radius > GetScreenHeight())
+			enemy.collisionShape.center.y = 0 - enemy.collisionShape.radius;
+		else if (enemy.collisionShape.center.y + enemy.collisionShape.radius < 0)
+			enemy.collisionShape.center.y = static_cast <float>(GetScreenHeight()) + enemy.collisionShape.radius;
+
+		enemy.collisionShape.center.x = enemy.collisionShape.center.x;
+		enemy.collisionShape.center.y = enemy.collisionShape.center.y;
+	}
+
+	bool PlayerEnemyAreColliding(EnemyNS::Enemy& enemy)
+	{
+		float distX = player.collisionShape.center.x - enemy.collisionShape.center.x;
+		float distY = player.collisionShape.center.y - enemy.collisionShape.center.y;
+		float distance = sqrt((distX * distX) + (distY * distY));
+
+		return distance <= player.collisionShape.radius + enemy.collisionShape.radius;
 	}
 
 }

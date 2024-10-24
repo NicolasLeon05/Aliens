@@ -65,5 +65,8 @@
     <ClInclude Include="src\Objects\Enemy.h">
       <Filter>Objects</Filter>
     </ClInclude>
+    <ClInclude Include="src\Objects\Circle.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

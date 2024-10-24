@@ -1,6 +1,7 @@
 #pragma once
 
 #include "raylib.h"
+#include "Circle.h"
 
 namespace Player
 {
@@ -11,6 +12,8 @@ namespace Player
 		Rectangle destination;
 		float scale;
 		float rotation;
+		
+		Circle::Circle collisionShape;
 
 		Vector2 pos;
 		Vector2 speed;

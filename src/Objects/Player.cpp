@@ -26,18 +26,27 @@ namespace Player
 		float spriteCenterY = player.sprite.height * player.scale / 2;
 		spriteCenter = { spriteCenterX, spriteCenterY };
 
-		player.maxAcceleration = 400.0f;
-		player.acceleration = 0.3f;
+		player.collisionShape.center = player.pos;
+		player.collisionShape.radius = 30;
+
+		player.maxAcceleration = 200.0f;
+		player.acceleration = 0.1f;
 		player.speed = { 0,0 };
 	}
 
 	void Draw()
 	{
-		DrawTexturePro(player.sprite, player.source, player.destination, spriteCenter, player.rotation, WHITE);
 #ifdef _DEBUG
-		DrawCircle(static_cast <int>(player.pos.x), static_cast <int>(player.pos.y), 5, RED);
+		//Collision
+		DrawCircle(static_cast <int>(player.collisionShape.center.x), static_cast <int>(player.collisionShape.center.y), player.collisionShape.radius, BLUE);
 #endif // _DEBUG
 
+		DrawTexturePro(player.sprite, player.source, player.destination, spriteCenter, player.rotation, WHITE);
+
+#ifdef _DEBUG
+		//Center
+		DrawCircle(static_cast <int>(player.pos.x), static_cast <int>(player.pos.y), 5, YELLOW);
+#endif // _DEBUG
 	}
 }
 
