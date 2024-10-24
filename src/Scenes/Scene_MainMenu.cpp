@@ -33,11 +33,13 @@ namespace MainMenu
 	void Draw()
 	{
 		ClearBackground(BLACK);
-		const char* gameName = "Name";
-		int textLength = MeasureText(gameName, fontSize * 2);
+
+		int titleFontSize = fontSize * 2;
+		const char* title = "Name";
+		int textLength = MeasureText(title, titleFontSize);
 		int textX = static_cast<int> (screenCenterX + textLength / 6);
-		int textY = static_cast<int> (screenHeight / 6 - fontSize * 2 / 2);
-		DrawText(gameName, textX, textY, fontSize * 2, RED);
+		int textY = static_cast<int> (screenHeight / 6 - titleFontSize / 2);
+		DrawText(title, textX, textY, titleFontSize, RED);
 
 		Bton::Draw(play, fontSize);
 		Bton::Draw(tutorial, fontSize);
