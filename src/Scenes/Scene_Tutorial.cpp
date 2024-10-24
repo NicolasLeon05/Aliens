@@ -2,9 +2,6 @@
 
 namespace Tutorial
 {
-	Bton::Button play;
-	Bton::Button tutorial;
-	Bton::Button credits;
 	Bton::Button exit;
 
 	static int fontSize = 40;
@@ -25,15 +22,14 @@ namespace Tutorial
 	void Draw()
 	{
 		ClearBackground(BLACK);
-		const char* gameName = "Name";
-		int textLength = MeasureText(gameName, fontSize * 2);
-		int textX = static_cast<int> (screenCenterX + textLength / 6);
-		int textY = static_cast<int> (screenHeight / 6 - fontSize * 2 / 2);
-		DrawText(gameName, textX, textY, fontSize * 2, RED);
 
-		Bton::Draw(play, fontSize);
-		Bton::Draw(tutorial, fontSize);
-		Bton::Draw(credits, fontSize);
+		int titleFontSize = fontSize * 2;
+		const char* HowToMove = "How to play";
+		int textLength = MeasureText(HowToMove, titleFontSize);
+		int textX = static_cast<int> (screenCenterX + textLength / 6);
+		int textY = static_cast<int> (screenHeight / 6 - titleFontSize / 2);
+		DrawText(HowToMove, textX, textY, titleFontSize, RED);
+
 		Bton::Draw(exit, fontSize);
 	}
 }
