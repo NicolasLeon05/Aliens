@@ -1,6 +1,7 @@
 #pragma once
 
 #include "raylib.h"
+
 #include "Circle.h"
 
 namespace Player

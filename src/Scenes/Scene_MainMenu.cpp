@@ -2,7 +2,6 @@
 
 #include "raylib.h"
 
-
 namespace Bton = Button;
 
 namespace MainMenu

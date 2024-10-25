@@ -1,22 +1,21 @@
 #include "Scene_Gameplay.h"
 
+#include <iostream>
+#include <cmath>
+
 #include "raylib.h"
+
 #include "Player.h"
 #include "Enemy.h"
-#include "math.h"
-
 #include "SoundManager.h"
 
-#include <iostream>
 
 namespace PlayerNS = Player;
-using namespace PlayerNS;
-
 namespace EnemyNS = Enemy;
+
+using namespace PlayerNS;
 using namespace EnemyNS;
-
 using namespace SoundManager;
-
 using namespace std;
 
 

@@ -5,9 +5,7 @@
 #include "Scene_MainMenu.h"
 #include "Scene_Gameplay.h"
 #include "Scene_Tutorial.h"
-
 #include "Button.h"
-
 #include "SoundManager.h"
 
 using namespace Button;
