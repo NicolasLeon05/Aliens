@@ -1,5 +1,7 @@
 #include "Game.h"
 
+#include <iostream>
+
 #include "raylib.h"
 
 #include "Scene_MainMenu.h"
@@ -51,6 +53,8 @@ namespace Game
 
 	void Load()
 	{
+		srand(static_cast<unsigned int>(time(NULL)));
+
 		currentScene = CurrentScene::MainMenu;
 		InitWindow(screenWidth, screenHeight, "Aliens");
 
@@ -160,6 +164,7 @@ namespace Game
 	void Unload()
 	{
 		UnloadMusicStream(music);  // Descarga la música
+		Gameplay::Unload();
 		CloseAudioDevice();
 		CloseWindow();
 	}

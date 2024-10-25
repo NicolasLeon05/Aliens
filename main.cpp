@@ -1,6 +1,4 @@
 #include "Game.h"
-#include <iostream>
-
 
 //Completar Scene_Tutorial
 //Hacer Scene_Credits
@@ -13,8 +11,6 @@
 
 int main()
 {
-	srand(static_cast<unsigned int>(time(NULL)));
 	Game::Run();
-
 	return 0;
 }
