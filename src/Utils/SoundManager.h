@@ -7,5 +7,5 @@ namespace SoundManager
 	extern Music gameplayMusic;
 
 	extern Sound accelerateSound;
-	void Init();
+	void Load();
 }

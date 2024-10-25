@@ -1,5 +1,7 @@
 #pragma once
 
+#include "raylib.h"
+
 #include "Circle.h"
 
 namespace Bullet
@@ -10,10 +12,13 @@ namespace Bullet
 	{
 		Circle::Circle shape;
 		Vector2 speed;
+		Color color;
 		bool isActive;
 	};
 
 	extern Bullet bullets[maxBullets];
+
+	void Load();
 
 	void Update();
 
