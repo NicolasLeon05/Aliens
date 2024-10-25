@@ -21,9 +21,6 @@
     <ClCompile Include="src\Game.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="src\Scenes\Scene_Gameplay.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
@@ -47,6 +44,12 @@
     </ClCompile>
     <ClCompile Include="src\Objects\Bullet.cpp">
       <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Objects\Weapon.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +81,9 @@
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="src\Objects\Bullet.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Objects\Weapon.h">
       <Filter>Objects</Filter>
     </ClInclude>
   </ItemGroup>
