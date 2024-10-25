@@ -16,4 +16,9 @@ namespace SoundManager
 		SetSoundVolume(accelerateSound, 0.5);
 
 	}
+
+	void Unload()
+	{
+		CloseAudioDevice();
+	}
 }

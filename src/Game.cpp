@@ -165,7 +165,7 @@ namespace Game
 	{
 		UnloadMusicStream(music);  // Descarga la música
 		Gameplay::Unload();
-		CloseAudioDevice();
+		SoundManager::Unload();
 		CloseWindow();
 	}
 
