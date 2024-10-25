@@ -148,13 +148,13 @@ namespace Gameplay
 
 		//Check x axis
 		if (player.pos.x - spriteWidth > GetScreenWidth())
-			player.pos.x = 0 - spriteWidth;
+			player.pos.x = -spriteWidth;
 		else if (player.pos.x + spriteWidth < 0)
 			player.pos.x = static_cast <float> (GetScreenWidth()) + spriteWidth;
 
 		//Check y axis
 		if (player.pos.y - spriteHeight > GetScreenHeight())
-			player.pos.y = 0 - spriteHeight;
+			player.pos.y = -spriteHeight;
 		else if (player.pos.y + spriteHeight < 0)
 			player.pos.y = static_cast <float>(GetScreenHeight()) + spriteHeight;
 
