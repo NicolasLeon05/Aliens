@@ -32,26 +32,46 @@ namespace Player
 		player.maxAcceleration = 300.0f;
 		player.acceleration = 0.2f;
 		player.speed = { 0,0 };
+
+		WeaponNS::Load(player.weapon);
 	}
 
 	void Draw()
 	{
-#ifdef _DEBUG
 		//Collision
+#ifdef _DEBUG
 		DrawCircle(static_cast <int>(player.collisionShape.center.x), static_cast <int>(player.collisionShape.center.y), player.collisionShape.radius, BLUE);
 #endif // _DEBUG
 
-		DrawTexturePro(player.sprite, 
-					   player.source, 
-			           player.destination, 
-			           spriteCenter, 
-			           player.rotation,
-			           WHITE);
 
-#ifdef _DEBUG
+		DrawTexturePro(player.sprite,
+			player.source,
+			player.destination,
+			spriteCenter,
+			player.rotation,
+			WHITE);
+
+		DrawBullets(player.weapon);
+
+
 		//Center
+#ifdef _DEBUG
 		DrawCircle(static_cast <int>(player.pos.x), static_cast <int>(player.pos.y), 5, YELLOW);
 #endif // _DEBUG
+	}
+
+	void Shoot()
+	{
+		for (int i = 0; i < maxBullets; i++)
+		{
+			if (!player.weapon.bullets[i].isActive)
+			{
+				player.weapon.bullets[i].shape.center = { 0,0 };
+				//player.weapon.bullets[i].speed = Vector2Scale(Vector2Normalize(direction), bullets[i].speed);
+				player.weapon.bullets[i].isActive = true;
+				break;
+			}
+		}
 	}
 }
 

@@ -51,6 +51,12 @@ namespace Gameplay
 	void Update()
 	{
 		SetPlayerRotation();
+
+		if (IsMouseButtonDown(0))
+		{
+			PlayerNS::Shoot();
+		}
+
 		if (IsMouseButtonDown(1))
 		{
 			if (!IsSoundPlaying(accelerateSound))
