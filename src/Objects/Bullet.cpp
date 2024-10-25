@@ -2,38 +2,25 @@
 
 namespace Bullet
 {
-	Bullet bullets[maxBullets];
-
-	void Load()
+	void Load(Bullet& bullet)
 	{
-		float bulletSize = 5;
+		bullet.isActive = false;
+		bullet.speed = { 0,0 };
 
-		for (int i = 0; i < maxBullets; i++)
-		{
-			bullets[i].isActive = false;
-			bullets[i].speed = { 0,0 };
-			bullets[i].shape.center = { 0,0 };
-			bullets[i].shape.radius = bulletSize;
-			bullets[i].color = GREEN;
-		}
+		bullet.shape.center = { 0,0 };
+		bullet.shape.radius = 5;
+
+		bullet.color = GREEN;
 	}
 
-	void Update()
+	void Draw(Bullet bullet)
 	{
-
-	}
-
-	void Draw()
-	{
-		for (int i = 0; i < maxBullets; i++)
-		{
-			if (bullets[i].isActive)
+			if (bullet.isActive)
 			{
-				DrawCircle(static_cast <int> (bullets[i].shape.center.x),
-						   static_cast <int> (bullets[i].shape.center.y),
-						   bullets[i].shape.radius,
-						   bullets[i].color);
+				DrawCircle(static_cast <int> (bullet.shape.center.x),
+						   static_cast <int> (bullet.shape.center.y),
+						   bullet.shape.radius,
+						   bullet.color);
 			}
-		}
 	}
 }

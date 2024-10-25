@@ -6,7 +6,6 @@
 
 namespace Bullet
 {
-	const int maxBullets = 40;
 
 	struct Bullet
 	{
@@ -16,11 +15,7 @@ namespace Bullet
 		bool isActive;
 	};
 
-	extern Bullet bullets[maxBullets];
+	void Load(Bullet& bullet);
 
-	void Load();
-
-	void Update();
-
-	void Draw();
+	void Draw(Bullet bullet);
 }
