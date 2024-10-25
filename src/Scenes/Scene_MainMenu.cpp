@@ -17,16 +17,18 @@ namespace MainMenu
 	static float buttonHeight = 70;
 	static float screenHeight;
 	static float screenCenterX;
+	static float buttonCenterX;
 
 	void Init()
 	{
 		screenHeight = static_cast<float>(GetScreenHeight());
-		screenCenterX = GetScreenWidth() / 2 - buttonWidth / 2;
+		screenCenterX = static_cast<float>(GetScreenWidth() / 2);
+		buttonCenterX = screenCenterX - buttonWidth / 2;
 
-		play = Bton::Create("Play", screenCenterX, static_cast<float>(screenHeight / 6 * 2), buttonWidth, buttonHeight);
-		tutorial = Bton::Create("Tutorial", screenCenterX, static_cast<float>(screenHeight / 6 * 3), buttonWidth, buttonHeight);
-		credits = Bton::Create("Credits", screenCenterX, static_cast<float>(screenHeight / 6 * 4), buttonWidth, buttonHeight);
-		exit = Bton::Create("Exit", screenCenterX, static_cast<float>(screenHeight / 6 * 5), buttonWidth, buttonHeight);
+		play = Bton::Create("Play", buttonCenterX, static_cast<float>(screenHeight / 6 * 2), buttonWidth, buttonHeight);
+		tutorial = Bton::Create("Tutorial", buttonCenterX, static_cast<float>(screenHeight / 6 * 3), buttonWidth, buttonHeight);
+		credits = Bton::Create("Credits", buttonCenterX, static_cast<float>(screenHeight / 6 * 4), buttonWidth, buttonHeight);
+		exit = Bton::Create("Exit", buttonCenterX, static_cast<float>(screenHeight / 6 * 5), buttonWidth, buttonHeight);
 	}
 
 
@@ -37,7 +39,7 @@ namespace MainMenu
 		int titleFontSize = fontSize * 2;
 		const char* title = "Name";
 		int textLength = MeasureText(title, titleFontSize);
-		int textX = static_cast<int> (screenCenterX + textLength / 6);
+		int textX = static_cast<int> (screenCenterX - textLength / 2);
 		int textY = static_cast<int> (screenHeight / 6 - titleFontSize / 2);
 		DrawText(title, textX, textY, titleFontSize, RED);
 

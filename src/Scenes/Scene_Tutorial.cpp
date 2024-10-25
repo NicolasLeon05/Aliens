@@ -9,13 +9,15 @@ namespace Tutorial
 	static float buttonHeight = 70;
 	static float screenHeight;
 	static float screenCenterX;
+	static float buttonCenterX;
 
 	void Init()
 	{
 		screenHeight = static_cast<float>(GetScreenHeight());
-		screenCenterX = GetScreenWidth() / 2 - buttonWidth / 2;
+		screenCenterX = static_cast<float>(GetScreenWidth() / 2);
+		buttonCenterX = screenCenterX - buttonWidth / 2;
 
-		exit = Bton::Create("Exit", screenCenterX, static_cast<float>(screenHeight / 6 * 5), buttonWidth, buttonHeight);
+		exit = Bton::Create("Exit", buttonCenterX, static_cast<float>(screenHeight / 6 * 5), buttonWidth, buttonHeight);
 	}
 
 
@@ -26,7 +28,7 @@ namespace Tutorial
 		int titleFontSize = fontSize * 2;
 		const char* HowToMove = "How to play";
 		int textLength = MeasureText(HowToMove, titleFontSize);
-		int textX = static_cast<int> (screenCenterX + textLength / 6);
+		int textX = static_cast<int> (screenCenterX - textLength / 2);
 		int textY = static_cast<int> (screenHeight / 6 - titleFontSize / 2);
 		DrawText(HowToMove, textX, textY, titleFontSize, RED);
 
