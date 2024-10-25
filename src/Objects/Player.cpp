@@ -41,7 +41,12 @@ namespace Player
 		DrawCircle(static_cast <int>(player.collisionShape.center.x), static_cast <int>(player.collisionShape.center.y), player.collisionShape.radius, BLUE);
 #endif // _DEBUG
 
-		DrawTexturePro(player.sprite, player.source, player.destination, spriteCenter, player.rotation, WHITE);
+		DrawTexturePro(player.sprite, 
+					   player.source, 
+			           player.destination, 
+			           spriteCenter, 
+			           player.rotation,
+			           WHITE);
 
 #ifdef _DEBUG
 		//Center
