@@ -29,8 +29,8 @@ namespace Player
 		player.collisionShape.center = player.pos;
 		player.collisionShape.radius = 30;
 
-		player.maxAcceleration = 200.0f;
-		player.acceleration = 0.1f;
+		player.maxAcceleration = 300.0f;
+		player.acceleration = 0.2f;
 		player.speed = { 0,0 };
 	}
 
