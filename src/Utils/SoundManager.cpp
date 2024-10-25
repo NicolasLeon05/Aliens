@@ -6,7 +6,7 @@ namespace SoundManager
 	Music gameplayMusic;
 	Sound accelerateSound;
 
-	void Init()
+	void Load()
 	{
 		InitAudioDevice();
 		menuMusic = LoadMusicStream("res/Music/Asteroids_Adventure.mp3");

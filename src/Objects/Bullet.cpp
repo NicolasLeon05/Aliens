@@ -2,5 +2,10 @@
 
 namespace Bullet
 {
-
+	void Update()
+	{
+	}
+	void Draw()
+	{
+	}
 }

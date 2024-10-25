@@ -27,16 +27,16 @@ namespace Game
 
 	static Music music;
 
-	static void Init();
+	static void Load();
 	static void Update();
 	static void Draw();
-	static void Deinit();
+	static void Unload();
 
 	static void ResetGame();
 
 	void Run()
 	{
-		Init();
+		Load();
 		PlayMusicStream(music);
 		do
 		{
@@ -45,23 +45,23 @@ namespace Game
 
 		} while (!gameShouldClose);
 
-		Deinit();
+		Unload();
 	}
 
 
-	void Init()
+	void Load()
 	{
 		currentScene = CurrentScene::MainMenu;
 		InitWindow(screenWidth, screenHeight, "Aliens");
 
 		SetExitKey(0);
 
-		SoundManager::Init();
+		SoundManager::Load();
 		music = menuMusic;
 
-		MainMenu::Init();
-		Tutorial::Init();
-		Gameplay::Init();
+		MainMenu::Load();
+		Tutorial::Load();
+		Gameplay::Load();
 	}
 
 
@@ -157,7 +157,7 @@ namespace Game
 	}
 
 
-	void Deinit()
+	void Unload()
 	{
 		UnloadMusicStream(music);  // Descarga la música
 		CloseAudioDevice();
@@ -173,6 +173,6 @@ namespace Game
 		music = menuMusic;       
 		PlayMusicStream(music);
 
-		Gameplay::Init();
+		Gameplay::Load();
 	}
 }

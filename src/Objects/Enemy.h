@@ -36,7 +36,7 @@ namespace Enemy
 	extern vector <Enemy> enemies;
 	//extern Enemy enemies[maxEnemies];
 
-	void Init();
+	void Load();
 	void CreateEnemies();
 	void Draw();
 

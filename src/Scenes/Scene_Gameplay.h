@@ -2,8 +2,8 @@
 
 namespace Gameplay
 {
-	void Init();
+	void Load();
 	void Update();
 	void Draw();
+	void Unload();
 }
-

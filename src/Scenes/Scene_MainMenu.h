@@ -5,7 +5,7 @@ namespace Bton = Button;
 
 namespace MainMenu
 {
-	void Init();
+	void Load();
 	void Draw();
 
 	extern Bton::Button play;

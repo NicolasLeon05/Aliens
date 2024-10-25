@@ -5,7 +5,7 @@ namespace Player
 	Player player;
 	static Vector2 spriteCenter;
 
-	void Init()
+	void Load()
 	{
 		player.sprite = LoadTexture("res/Sprite/SpaceShip.png");
 		player.scale = 0.15f;

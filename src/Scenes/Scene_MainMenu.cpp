@@ -18,7 +18,7 @@ namespace MainMenu
 	static float screenCenterX;
 	static float buttonCenterX;
 
-	void Init()
+	void Load()
 	{
 		screenHeight = static_cast<float>(GetScreenHeight());
 		screenCenterX = static_cast<float>(GetScreenWidth() / 2);

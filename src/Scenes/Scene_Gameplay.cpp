@@ -41,10 +41,10 @@ namespace Gameplay
 	//Collisions
 	static bool PlayerEnemyAreColliding(EnemyNS::Enemy& enemy);
 
-	void Init()
+	void Load()
 	{
-		PlayerNS::Init();
-		EnemyNS::Init();
+		PlayerNS::Load();
+		EnemyNS::Load();
 		background = LoadTexture("res/Backgrounds/GameplayBackground.png");
 	}
 
@@ -75,6 +75,12 @@ namespace Gameplay
 		DrawTexture(background, 0, 0, WHITE);
 		PlayerNS::Draw();
 		EnemyNS::Draw();
+	}
+
+	void Unload()
+	{
+		UnloadTexture(player.sprite);
+		UnloadTexture(background);
 	}
 
 

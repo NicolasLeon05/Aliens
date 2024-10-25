@@ -45,6 +45,9 @@
     <ClCompile Include="src\Scenes\Scene_Tutorial.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="src\Objects\Bullet.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -73,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="src\Scenes\Scene_Tutorial.h">
       <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Objects\Bullet.h">
+      <Filter>Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

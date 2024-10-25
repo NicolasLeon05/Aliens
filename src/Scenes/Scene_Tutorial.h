@@ -5,7 +5,7 @@ namespace Bton = Button;
 
 namespace Tutorial
 {
-	void Init();
+	void Load();
 	void Draw();
 
 	extern Bton::Button exit;

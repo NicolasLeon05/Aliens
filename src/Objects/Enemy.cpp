@@ -21,10 +21,10 @@ namespace Enemy
 
 	static void SetDirection(Enemy& enemy);
 
-	static void InitDividedEnemy(Enemy original, Enemy& division);
+	static void CreateDividedEnemy(Enemy original, Enemy& division);
 
 
-	void Init()
+	void Load()
 	{
 		CreateEnemies();
 	}
@@ -75,8 +75,8 @@ namespace Enemy
 			}
 			}
 
-			InitDividedEnemy(enemy, division1);
-			InitDividedEnemy(enemy, division2);
+			CreateDividedEnemy(enemy, division1);
+			CreateDividedEnemy(enemy, division2);
 
 			enemies.push_back(division1);
 			enemies.push_back(division2);
@@ -218,7 +218,7 @@ namespace Enemy
 
 	}
 
-	void InitDividedEnemy(Enemy original, Enemy& division)
+	void CreateDividedEnemy(Enemy original, Enemy& division)
 	{
 		division.collisionShape.center.x = original.collisionShape.center.x + 100;
 		division.collisionShape.center.y = original.collisionShape.center.x + 100;
