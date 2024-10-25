@@ -1,7 +1,10 @@
 #include "Button.h"
+
+#ifdef _DEBUG
 #include <iostream>
 
 using namespace std;
+#endif // _DEBUG
 
 
 namespace Button
