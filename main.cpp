@@ -1,12 +1,12 @@
 #include "Game.h"
 #include <iostream>
+//Completar Scene_Tutorial
+//Hacer Scene_Credits
+//Añadir vida al player
+//Añadir disparos
 //Hacer un cpp y h para un text que se use en button
-//Cambiar los numeros magicos de font en button
-//Fijarse si rec se usa
-//Tal vez combiene hacer un sprite.h o algo asi para que tenga el source, destination, scale, rotation
-
-//Añadidos aliens, faltan colisiones y que sean un cricle en vez de un rectangle
-//Falta hacer un circle.h y circle.cpp
+//Tal vez conviene hacer un sprite.h o algo asi para que tenga el source, destination, scale, rotation
+//Tal vez conviene que en lugar de un vector de enemy sea una list
 
 int main()
 {
