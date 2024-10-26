@@ -126,7 +126,7 @@ namespace Gameplay
 			rotationAngle += 360.0f;
 
 		//Assing player rotation
-		player.rotation = -rotationAngle + 90;
+		player.rotation = -rotationAngle;
 	}
 
 	void SetPlayerAcceleration()

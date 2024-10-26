@@ -11,8 +11,8 @@ namespace Player
 	{
 		player.lives = 5;
 
-		player.sprite = LoadTexture("res/Sprite/SpaceShip.png");
-		player.scale = 0.15f;
+		player.sprite = LoadTexture("res/Sprite/PlayerSpaceship.png");
+		player.scale = 1.75f;
 		player.source = { 0,0, static_cast<float>(player.sprite.width), static_cast<float>(player.sprite.height) };
 		player.pos.x = static_cast<float>(GetScreenWidth() / 2);
 		player.pos.y = static_cast<float>(GetScreenHeight() / 2);
@@ -47,6 +47,7 @@ namespace Player
 		DrawCircle(static_cast <int>(player.collisionShape.center.x), static_cast <int>(player.collisionShape.center.y), player.collisionShape.radius, BLUE);
 #endif // _DEBUG
 
+		DrawBullets(player.weapon);
 
 		DrawTexturePro(player.sprite,
 			player.source,
@@ -55,7 +56,6 @@ namespace Player
 			player.rotation,
 			WHITE);
 
-		DrawBullets(player.weapon);
 
 
 		//Center
@@ -72,7 +72,7 @@ namespace Player
 			{
 				player.weapon.bullets[i].shape.center = player.pos;
 
-				float angleInRadians = (player.rotation - 90) * (PI / 180.0f);
+				float angleInRadians = (player.rotation) * (PI / 180.0f);
 				player.weapon.bullets[i].speed = {
 					cos(angleInRadians) * player.weapon.bulletSpeed,
 					sin(angleInRadians) * player.weapon.bulletSpeed
