@@ -140,7 +140,7 @@ namespace Enemy
 		{
 			enemy.sprite = LoadTexture("res/Sprite/EnemySpaceship.png");
 			enemy.collisionShape.radius = spaceShipSize;
-			enemy.scale = 2.0f;
+			enemy.scale = 1.8f;
 			break;
 		}
 
@@ -148,7 +148,7 @@ namespace Enemy
 		{
 			enemy.sprite = LoadTexture("res/Sprite/BigMetalPiece.png");
 			enemy.collisionShape.radius = bigMetalPieceSize;
-			enemy.scale = 1.0f;
+			enemy.scale = 2.2f;
 			break;
 		}
 
@@ -156,7 +156,7 @@ namespace Enemy
 		{
 			enemy.sprite = LoadTexture("res/Sprite/SmallMetalPiece.png");
 			enemy.collisionShape.radius = smallMetalPieceSize;
-			enemy.scale = 0.8f;
+			enemy.scale = 1.6f;
 			break;
 		}
 
