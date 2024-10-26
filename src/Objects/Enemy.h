@@ -20,12 +20,12 @@ namespace Enemy
 	struct Enemy
 	{
 		Size size;
-		/*Texture2D sprite;
+
+		Texture2D sprite;
 		Rectangle source;
 		Rectangle destination;
 		float scale;
 		float rotation;
-		*/
 
 		Circle::Circle collisionShape;
 		Vector2 speed;

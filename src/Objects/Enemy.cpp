@@ -15,11 +15,13 @@ namespace Enemy
 
 	static Size GetRandomSize();
 
-	static void AssignSize(Enemy& enemy);
+	static void AssignSizeAndSprite(Enemy& enemy);
 
 	static void SetRandomPosition(Enemy& enemy);
 
 	static void SetDirection(Enemy& enemy);
+
+	static void SetSpriteProperties(Enemy& enemy);
 
 	static void CreateDividedEnemy(Enemy original, Enemy& division);
 
@@ -43,12 +45,27 @@ namespace Enemy
 		{
 			if (enemies[i].isActive)
 			{
-				int x = static_cast<int> (enemies[i].collisionShape.center.x);
-				int y = static_cast<int> (enemies[i].collisionShape.center.y);
-				float radius = enemies[i].collisionShape.radius;
+				#ifdef _DEBUG
+					//Draw CollisionShape
+					int x = static_cast<int> (enemies[i].collisionShape.center.x);
+					int y = static_cast<int> (enemies[i].collisionShape.center.y);
+					float radius = enemies[i].collisionShape.radius;
 
-				DrawCircle(x, y, radius, RED);
-				DrawCircle(x, y, radius, RED);
+					DrawCircle(x, y, radius, RED);
+				#endif // _DEBUG
+
+				//Draw sprite
+				Vector2 spriteCenter = { enemies[i].sprite.height * enemies[i].scale / 2,
+										 enemies[i].sprite.width * enemies[i].scale / 2
+				};
+
+				DrawTexturePro(enemies[i].sprite,
+					enemies[i].source,
+					enemies[i].destination,
+					spriteCenter,
+					enemies[i].rotation,
+					WHITE);
+
 			}
 		}
 	}
@@ -100,9 +117,10 @@ namespace Enemy
 			Enemy newEnemy;
 
 			newEnemy.size = GetRandomSize();
-			AssignSize(newEnemy);
+			AssignSizeAndSprite(newEnemy);
 			SetRandomPosition(newEnemy);
 			SetDirection(newEnemy);
+			SetSpriteProperties(newEnemy);
 			newEnemy.isActive = true;
 
 			enemies.push_back(newEnemy);
@@ -114,25 +132,31 @@ namespace Enemy
 		return Size(rand() % 3);
 	}
 
-	void AssignSize(Enemy& enemy)
+	void AssignSizeAndSprite(Enemy& enemy)
 	{
 		switch (enemy.size)
 		{
 		case Size::SpaceShip:
 		{
+			enemy.sprite = LoadTexture("res/Sprite/EnemySpaceship.png");
 			enemy.collisionShape.radius = spaceShipSize;
+			enemy.scale = 2.0f;
 			break;
 		}
 
 		case Size::BigMetalPiece:
 		{
+			enemy.sprite = LoadTexture("res/Sprite/BigMetalPiece.png");
 			enemy.collisionShape.radius = bigMetalPieceSize;
+			enemy.scale = 1.0f;
 			break;
 		}
 
 		case Size::SmallMetalPiece:
 		{
+			enemy.sprite = LoadTexture("res/Sprite/SmallMetalPiece.png");
 			enemy.collisionShape.radius = smallMetalPieceSize;
+			enemy.scale = 0.8f;
 			break;
 		}
 
@@ -225,12 +249,31 @@ namespace Enemy
 
 	}
 
+	void SetSpriteProperties(Enemy& enemy)
+	{
+		enemy.source = { 0,
+						  0,
+						  static_cast<float>(enemy.sprite.width),
+						  static_cast<float>(enemy.sprite.height)
+		};
+
+		float destinationWidth = enemy.sprite.width * enemy.scale;
+		float destinationHeight = enemy.sprite.height * enemy.scale;
+
+		enemy.destination = { enemy.collisionShape.center.x,
+							   enemy.collisionShape.center.y,
+							   destinationWidth,
+							   destinationHeight
+		};
+	}
+
 	void CreateDividedEnemy(Enemy original, Enemy& division)
 	{
 		division.collisionShape.center.x = original.collisionShape.center.x;
 		division.collisionShape.center.y = original.collisionShape.center.y;
 		SetDirection(division);
-		AssignSize(division);
+		AssignSizeAndSprite(division);
+		SetSpriteProperties(division);
 		division.isActive = true;
 	}
 }
