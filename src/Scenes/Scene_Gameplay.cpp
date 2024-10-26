@@ -23,7 +23,7 @@ namespace Gameplay
 {
 	static Vector2 mousePosition;
 	static float r;
-	static float playerAngle; //Quizas tendria que ser una variable de player
+	static float rotationAngle;
 
 	static Texture2D background;
 
@@ -38,8 +38,14 @@ namespace Gameplay
 	static void MoveEnemy(EnemyNS::Enemy& enemy);
 	static void KeepEnemyOnScreen(EnemyNS::Enemy& enemy);
 
+	//Bullet movement
+	static void ManageBullets();
+	static void MoveBullet(BulletNS::Bullet& bullet);
+	static void DeactivateBullet(BulletNS::Bullet& bullet);
+
 	//Collisions
 	static bool PlayerEnemyAreColliding(EnemyNS::Enemy& enemy);
+	static bool BulletEnemeyAreColliding(BulletNS::Bullet& bullet, EnemyNS::Enemy& enemy);
 
 	void Load()
 	{
@@ -52,9 +58,9 @@ namespace Gameplay
 	{
 		SetPlayerRotation();
 
-		if (IsMouseButtonDown(0))
+		if (IsMouseButtonPressed(0))
 		{
-			PlayerNS::Shoot();
+			Shoot();			
 		}
 
 		if (IsMouseButtonDown(1))
@@ -73,6 +79,8 @@ namespace Gameplay
 		KeepPlayerOnScreen();
 
 		ManageEnemies();
+
+		ManageBullets();
 	}
 
 	void Draw()
@@ -90,31 +98,31 @@ namespace Gameplay
 	}
 
 
-
+	//Player
 	void SetPlayerRotation()
 	{
 		//Get polar coordinates of the mouse
 		mousePosition = { GetMousePosition().x - player.pos.x, player.pos.y - GetMousePosition().y };
 
 		//Get angle in radians
-		playerAngle = atan(mousePosition.y / mousePosition.x);
+		rotationAngle = atan(mousePosition.y / mousePosition.x);
 
 		//Convert to degrees
-		playerAngle *= (180 / PI);
+		rotationAngle *= (180 / PI);
 
 		//Check cuadrant variants
 		if (mousePosition.x < 0)
-			playerAngle += 180.0f;
+			rotationAngle += 180.0f;
 		else if (mousePosition.y < 0)
-			playerAngle += 360.0f;
+			rotationAngle += 360.0f;
 
 		//Assing player rotation
-		player.rotation = -playerAngle + 90;
+		player.rotation = -rotationAngle + 90;
 	}
 
 	void SetPlayerAcceleration()
 	{
-		float angleInRadians = playerAngle * (PI / 180);
+		float angleInRadians = rotationAngle * (PI / 180);
 
 		player.speed.x += player.acceleration * cos(angleInRadians);
 		player.speed.y += (-player.acceleration) * sin(angleInRadians);
@@ -162,6 +170,8 @@ namespace Gameplay
 		player.destination.y = player.pos.y;
 	}
 
+
+	//Enemies
 	void ManageEnemies()
 	{
 		for (int i = 0; i < static_cast <int>(enemies.size()); i++)
@@ -201,10 +211,57 @@ namespace Gameplay
 		else if (enemy.collisionShape.center.y + enemy.collisionShape.radius < 0)
 			enemy.collisionShape.center.y = static_cast <float>(GetScreenHeight()) + enemy.collisionShape.radius;
 
-		enemy.collisionShape.center.x = enemy.collisionShape.center.x;
-		enemy.collisionShape.center.y = enemy.collisionShape.center.y;
 	}
 
+
+	//Bullets
+	void ManageBullets()
+	{
+		for (int i = 0; i < maxBullets; i++)
+		{
+			if (player.weapon.bullets[i].isActive)
+			{
+				MoveBullet(player.weapon.bullets[i]);
+				DeactivateBullet(player.weapon.bullets[i]);
+
+				for (int j = 0; j < static_cast <int>(enemies.size()); j++)
+				{
+					if (enemies[j].isActive)
+					{
+						if (BulletEnemeyAreColliding(player.weapon.bullets[i], enemies[j]))
+						{
+							player.weapon.bullets[i].isActive = false;
+							enemies[j].isActive = false;
+							DivideEnemy(enemies[j]);
+
+							break;
+						}
+					}
+				}
+
+			}
+		}
+	}
+
+	void MoveBullet(BulletNS::Bullet& bullet)
+	{
+		bullet.shape.center.x += bullet.speed.x * GetFrameTime();
+		bullet.shape.center.y += bullet.speed.y * GetFrameTime();
+	}
+
+	void DeactivateBullet(BulletNS::Bullet& bullet)
+	{
+		if (bullet.shape.center.x < 0 ||
+			bullet.shape.center.x > GetScreenWidth() ||
+			bullet.shape.center.y < 0 ||
+			bullet.shape.center.y > GetScreenHeight())
+		{
+			bullet.isActive = false;
+		}
+	}
+
+
+	//Collisions
 	bool PlayerEnemyAreColliding(EnemyNS::Enemy& enemy)
 	{
 		float distX = player.collisionShape.center.x - enemy.collisionShape.center.x;
@@ -212,6 +269,15 @@ namespace Gameplay
 		float distance = sqrt((distX * distX) + (distY * distY));
 
 		return distance <= player.collisionShape.radius + enemy.collisionShape.radius;
+	}
+
+	bool BulletEnemeyAreColliding(BulletNS::Bullet& bullet, EnemyNS::Enemy& enemy)
+	{
+		float distX = bullet.shape.center.x - enemy.collisionShape.center.x;
+		float distY = bullet.shape.center.y - enemy.collisionShape.center.y;
+		float distance = sqrt((distX * distX) + (distY * distY));
+
+		return distance <= bullet.shape.radius + enemy.collisionShape.radius;
 	}
 
 }
