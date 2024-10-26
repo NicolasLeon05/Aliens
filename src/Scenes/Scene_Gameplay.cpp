@@ -203,8 +203,8 @@ namespace Gameplay
 
 	void MoveEnemy(EnemyNS::Enemy& enemy)
 	{
-		enemy.collisionShape.center.x += enemy.speed.x * GetFrameTime();
-		enemy.collisionShape.center.y += enemy.speed.y * GetFrameTime();
+		enemy.collisionShape.center.x += enemy.speed.x;
+		enemy.collisionShape.center.y += enemy.speed.y;
 		enemy.collisionShape.center.x = enemy.collisionShape.center.x;
 		enemy.collisionShape.center.y = enemy.collisionShape.center.y;
 	}

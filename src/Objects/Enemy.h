@@ -9,7 +9,7 @@ using namespace std;
 
 namespace Enemy
 {
-	const int startingEnemies = 70;
+	const int startingEnemies = 50;
 	const float totalSpeed = 80.0f;
 
 	enum class Size

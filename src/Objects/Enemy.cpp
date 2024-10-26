@@ -14,7 +14,7 @@ namespace Enemy
 	static const float bigMetalPieceSize = 16.0f;
 	static const float smallMetalPieceSize = 10.0f;
 
-	static void CreateEnemies(); //Si le pongo static se rompe
+	static void CreateEnemies();
 
 	static Size SetRandomSize();
 
@@ -48,14 +48,14 @@ namespace Enemy
 		{
 			if (enemies[i].isActive)
 			{
-				#ifdef _DEBUG
-					//Draw CollisionShape
-					int x = static_cast<int> (enemies[i].collisionShape.center.x);
-					int y = static_cast<int> (enemies[i].collisionShape.center.y);
-					float radius = enemies[i].collisionShape.radius;
+#ifdef _DEBUG
+				//Draw CollisionShape
+				int x = static_cast<int> (enemies[i].collisionShape.center.x);
+				int y = static_cast<int> (enemies[i].collisionShape.center.y);
+				float radius = enemies[i].collisionShape.radius;
 
-					DrawCircle(x, y, radius, RED);
-				#endif // _DEBUG
+				DrawCircle(x, y, radius, RED);
+#endif // _DEBUG
 
 				//Draw sprite
 				Vector2 spriteCenter = { enemies[i].sprite.height * enemies[i].scale / 2,
@@ -223,15 +223,15 @@ namespace Enemy
 	void SetDirection(Enemy& enemy)
 	{
 		Vector2 targetPosition = {
-	   static_cast<float>(rand() % GetScreenWidth()),
-	   static_cast<float>(rand() % GetScreenHeight())
+			static_cast<float>(rand() % GetScreenWidth()),
+			static_cast<float>(rand() % GetScreenHeight())
 		};
 
 		// Calcular el ángulo hacia la posición objetivo
 		float angle = CalculateAngleBetweenPoints(enemy.collisionShape.center, targetPosition);
 
 		// Establecer la velocidad
-		enemy.speed = CalculateVelocityFromAngle(angle, totalSpeed);
+		enemy.speed = CalculateVelocityFromAngle(angle, totalSpeed * GetFrameTime());
 
 	}
 
