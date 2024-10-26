@@ -14,10 +14,12 @@ namespace Player
 		//Sprite
 		player.sprite = LoadTexture("res/Sprite/PlayerSpaceship.png");
 		player.scale = 1.75f;
-		player.source = { 0,
-						  0,
-						  static_cast<float>(player.sprite.width),
-						  static_cast<float>(player.sprite.height)
+		player.source =
+		{
+			0,
+			0,
+			static_cast<float>(player.sprite.width),
+			static_cast<float>(player.sprite.height)
 		};
 
 		player.pos.x = static_cast<float>(GetScreenWidth() / 2);
@@ -26,10 +28,12 @@ namespace Player
 		float destinationWidth = player.sprite.width * player.scale;
 		float destinationHeight = player.sprite.height * player.scale;
 
-		player.destination = { player.pos.x,
-							   player.pos.y,
-							   destinationWidth,
-							   destinationHeight
+		player.destination =
+		{
+			player.pos.x,
+			player.pos.y,
+			destinationWidth,
+			destinationHeight
 		};
 
 		float spriteCenterX = player.sprite.width * player.scale / 2;
@@ -41,8 +45,8 @@ namespace Player
 		player.collisionShape.radius = 30;
 
 		//Speed
-		player.maxAcceleration = 300.0f;
-		player.acceleration = 0.2f;
+		player.maxAcceleration = 1000.0f;
+		player.acceleration = 200.0f;
 		player.speed = { 0,0 };
 
 		//Bullets
@@ -58,12 +62,14 @@ namespace Player
 
 		DrawBullets(player.weapon);
 
-		DrawTexturePro(player.sprite,
+		DrawTexturePro(
+			player.sprite,
 			player.source,
 			player.destination,
 			spriteCenter,
 			player.rotation,
-			WHITE);
+			WHITE
+		);
 
 
 
@@ -82,7 +88,9 @@ namespace Player
 				player.weapon.bullets[i].shape.center = player.pos;
 
 				float angleInRadians = (player.rotation) * (PI / 180.0f);
-				player.weapon.bullets[i].speed = {
+
+				player.weapon.bullets[i].speed = 
+				{
 					cos(angleInRadians) * player.weapon.bulletSpeed,
 					sin(angleInRadians) * player.weapon.bulletSpeed
 				};

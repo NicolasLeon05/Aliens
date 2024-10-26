@@ -2,6 +2,9 @@
 
 #include <iostream>
 
+#include "Utils.h"
+
+using namespace Utils;
 
 namespace Enemy
 {
@@ -107,7 +110,6 @@ namespace Enemy
 			enemies.push_back(division2);
 		}
 	}
-
 
 
 	void CreateEnemies()
@@ -220,32 +222,16 @@ namespace Enemy
 
 	void SetDirection(Enemy& enemy)
 	{
-		Vector2 nextPosition = { 0,0 };
-		int screenWidth = GetScreenWidth();
-		nextPosition.x = static_cast<float> (rand() % GetScreenWidth()) - enemy.collisionShape.center.x;
-		nextPosition.y = static_cast<float> (rand() % GetScreenHeight()) - enemy.collisionShape.center.y;
+		Vector2 targetPosition = {
+	   static_cast<float>(rand() % GetScreenWidth()),
+	   static_cast<float>(rand() % GetScreenHeight())
+		};
 
-		//Hacer funcion de utils - Se usa en SetenemyRotation tambien
-		//Debe retornar el angle
-			//Get angle in radians
-		float enemyAngle = atan(nextPosition.y / nextPosition.x);
+		// Calcular el ángulo hacia la posición objetivo
+		float angle = CalculateAngleBetweenPoints(enemy.collisionShape.center, targetPosition);
 
-		//Convert to degrees
-		enemyAngle *= (180 / PI);
-
-		//Check cuadrant variants
-		if (nextPosition.x < 0)
-			enemyAngle += 180.0f;
-		else if (nextPosition.y < 0)
-			enemyAngle += 360.0f;
-
-		float angleInRadians = enemyAngle * (PI / 180);
-
-		enemy.speed.x = totalSpeed * cos(angleInRadians);
-		float ran = totalSpeed * cos(angleInRadians);
-		enemy.speed.y = totalSpeed * sin(angleInRadians);
-		float ran2 = totalSpeed * sin(angleInRadians);
-		ran += ran2 + screenWidth;
+		// Establecer la velocidad
+		enemy.speed = CalculateVelocityFromAngle(angle, totalSpeed);
 
 	}
 
