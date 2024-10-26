@@ -11,7 +11,7 @@ namespace Enemy
 	static const float bigMetalPieceSize = 12.0f;
 	static const float smallMetalPieceSize = 7.0f;
 
-	void CreateEnemies(); //Si le pono static se rompeee
+	void CreateEnemies(); //Si le pongo static se rompeee
 
 	static Size GetRandomSize();
 
@@ -220,8 +220,8 @@ namespace Enemy
 
 	void CreateDividedEnemy(Enemy original, Enemy& division)
 	{
-		division.collisionShape.center.x = original.collisionShape.center.x + 100;
-		division.collisionShape.center.y = original.collisionShape.center.x + 100;
+		division.collisionShape.center.x = original.collisionShape.center.x;
+		division.collisionShape.center.y = original.collisionShape.center.y;
 		SetDirection(division);
 		AssignSize(division);
 		division.isActive = true;
