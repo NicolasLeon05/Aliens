@@ -10,7 +10,7 @@ namespace Weapon
 
 	struct Weapon
 	{
-		int bulletSpeed;
+		float bulletSpeed;
 		BulletNS::Bullet bullets[maxBullets];
 	};
 

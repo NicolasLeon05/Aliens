@@ -2,6 +2,10 @@
 
 #include "cmath"
 
+#include "Utils.h"
+
+using namespace Utils;
+
 namespace Player
 {
 	Player player;
@@ -87,13 +91,7 @@ namespace Player
 			{
 				player.weapon.bullets[i].shape.center = player.pos;
 
-				float angleInRadians = (player.rotation) * (PI / 180.0f);
-
-				player.weapon.bullets[i].speed = 
-				{
-					cos(angleInRadians) * player.weapon.bulletSpeed,
-					sin(angleInRadians) * player.weapon.bulletSpeed
-				};
+				player.weapon.bullets[i].speed = CalculateVelocityFromAngle(player.rotation, player.weapon.bulletSpeed);
 
 				player.weapon.bullets[i].isActive = true;
 				break;
