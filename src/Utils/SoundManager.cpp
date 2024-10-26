@@ -9,7 +9,7 @@ namespace SoundManager
 	void Load()
 	{
 		InitAudioDevice();
-		menuMusic = LoadMusicStream("res/Music/Asteroids_Adventure.mp3");
+		menuMusic = LoadMusicStream("res/Music/Pixel_StarsV2.mp3");
 		gameplayMusic = LoadMusicStream("res/Music/Pixel_Stars.mp3");
 
 		accelerateSound = LoadSound("res/SFX/Accelerate.mp3");
