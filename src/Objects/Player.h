@@ -25,7 +25,7 @@ namespace Player
 		//Collision
 		Circle::Circle collisionShape;
 
-		//Movement
+		//Speed
 		Vector2 speed;
 		float maxAcceleration;
 		float acceleration;

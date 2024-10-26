@@ -11,32 +11,41 @@ namespace Player
 	{
 		player.lives = 5;
 
+		//Sprite
 		player.sprite = LoadTexture("res/Sprite/PlayerSpaceship.png");
 		player.scale = 1.75f;
-		player.source = { 0,0, static_cast<float>(player.sprite.width), static_cast<float>(player.sprite.height) };
+		player.source = { 0,
+						  0,
+						  static_cast<float>(player.sprite.width),
+						  static_cast<float>(player.sprite.height)
+		};
+
 		player.pos.x = static_cast<float>(GetScreenWidth() / 2);
 		player.pos.y = static_cast<float>(GetScreenHeight() / 2);
 
-
 		float destinationWidth = player.sprite.width * player.scale;
 		float destinationHeight = player.sprite.height * player.scale;
+
 		player.destination = { player.pos.x,
-			player.pos.y,
-			destinationWidth,
-			destinationHeight
+							   player.pos.y,
+							   destinationWidth,
+							   destinationHeight
 		};
 
 		float spriteCenterX = player.sprite.width * player.scale / 2;
 		float spriteCenterY = player.sprite.height * player.scale / 2;
 		spriteCenter = { spriteCenterX, spriteCenterY };
 
+		//Collision
 		player.collisionShape.center = player.pos;
 		player.collisionShape.radius = 30;
 
+		//Speed
 		player.maxAcceleration = 300.0f;
 		player.acceleration = 0.2f;
 		player.speed = { 0,0 };
 
+		//Bullets
 		WeaponNS::Load(player.weapon);
 	}
 

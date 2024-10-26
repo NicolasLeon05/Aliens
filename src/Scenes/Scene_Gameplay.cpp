@@ -29,19 +29,19 @@ namespace Gameplay
 
 	static Texture2D background;
 
-	//Player movement
+	//Player
 	static void SetPlayerRotation();
 	static void SetPlayerAcceleration();
 	static void MovePlayer();
 	static void KeepPlayerOnScreen();
 
-	//Enemies movement
+	//Enemies
 	static void ManageEnemies();
 	static void MoveEnemy(EnemyNS::Enemy& enemy);
 	static void KeepEnemyOnScreen(EnemyNS::Enemy& enemy);
 	static void RemoveInactiveEnemies();
 
-	//Bullet movement
+	//Bullet
 	static void ManageBullets();
 	static void MoveBullet(BulletNS::Bullet& bullet);
 	static void DeactivateBullet(BulletNS::Bullet& bullet);
@@ -190,6 +190,10 @@ namespace Gameplay
 			{
 				MoveEnemy(enemies[i]);
 				KeepEnemyOnScreen(enemies[i]);
+
+				enemies[i].destination.x = enemies[i].collisionShape.center.x;
+				enemies[i].destination.y = enemies[i].collisionShape.center.y;
+
 				if (PlayerEnemyAreColliding(enemies[i]))
 				{
 					player.lives--;
