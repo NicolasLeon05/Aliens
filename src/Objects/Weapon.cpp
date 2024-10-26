@@ -3,9 +3,10 @@
 namespace Weapon
 {
 
-	void Load(Weapon weapon)
+	void Load(Weapon& weapon)
 	{
-		weapon.cooldown = 0.5f;
+		weapon.bulletSpeed = 500;
+
 		for (int i = 0; i < maxBullets; i++)
 		{
 			BulletNS::Load(weapon.bullets[i]);
@@ -16,7 +17,8 @@ namespace Weapon
 	{
 		for (int i = 0; i < maxBullets; i++)
 		{
-			BulletNS::Draw(weapon.bullets[i]);
+			if (weapon.bullets[i].isActive)
+				BulletNS::Draw(weapon.bullets[i]);
 		}
 	}
 }

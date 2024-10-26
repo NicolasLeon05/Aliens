@@ -10,11 +10,11 @@ namespace Weapon
 
 	struct Weapon
 	{
-		float cooldown;
+		int bulletSpeed;
 		BulletNS::Bullet bullets[maxBullets];
 	};
 
-	void Load(Weapon weapon);
+	void Load(Weapon& weapon);
 
 	void DrawBullets(Weapon weapon);
 }

@@ -15,12 +15,10 @@ namespace Bullet
 
 	void Draw(Bullet bullet)
 	{
-			if (bullet.isActive)
-			{
-				DrawCircle(static_cast <int> (bullet.shape.center.x),
-						   static_cast <int> (bullet.shape.center.y),
-						   bullet.shape.radius,
-						   bullet.color);
-			}
+		DrawCircle(static_cast <int> (bullet.shape.center.x),
+			static_cast <int> (bullet.shape.center.y),
+			bullet.shape.radius,
+			bullet.color);
+
 	}
 }

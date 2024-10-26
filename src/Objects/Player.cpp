@@ -1,5 +1,7 @@
 #include "Player.h"
 
+#include "cmath"
+
 namespace Player
 {
 	Player player;
@@ -66,8 +68,14 @@ namespace Player
 		{
 			if (!player.weapon.bullets[i].isActive)
 			{
-				player.weapon.bullets[i].shape.center = { 0,0 };
-				//player.weapon.bullets[i].speed = Vector2Scale(Vector2Normalize(direction), bullets[i].speed);
+				player.weapon.bullets[i].shape.center = player.pos;
+
+				float angleInRadians = (player.rotation - 90) * (PI / 180.0f);
+				player.weapon.bullets[i].speed = {
+					cos(angleInRadians) * player.weapon.bulletSpeed,
+					sin(angleInRadians) * player.weapon.bulletSpeed
+				};
+
 				player.weapon.bullets[i].isActive = true;
 				break;
 			}
