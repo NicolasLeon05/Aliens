@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "SoundManager.h"
+#include "Utils.h"
 
 
 namespace PlayerNS = Player;
@@ -16,12 +17,13 @@ namespace EnemyNS = Enemy;
 using namespace PlayerNS;
 using namespace EnemyNS;
 using namespace SoundManager;
+using namespace Utils;
+
 using namespace std;
 
 
 namespace Gameplay
 {
-	static Vector2 mousePosition;
 	static float r;
 	static float rotationAngle;
 	static const float enemyRemovalTime = 5.0f;
@@ -110,31 +112,20 @@ namespace Gameplay
 	//Player
 	void SetPlayerRotation()
 	{
-		//Get polar coordinates of the mouse
-		mousePosition = { GetMousePosition().x - player.pos.x, player.pos.y - GetMousePosition().y };
+		Vector2 mousePosition = GetMousePosition();
+		Vector2 playerPosition = player.pos;
 
-		//Get angle in radians
-		rotationAngle = atan(mousePosition.y / mousePosition.x);
+		rotationAngle = CalculateAngleBetweenPoints(playerPosition, mousePosition);
 
-		//Convert to degrees
-		rotationAngle *= (180 / PI);
-
-		//Check cuadrant variants
-		if (mousePosition.x < 0)
-			rotationAngle += 180.0f;
-		else if (mousePosition.y < 0)
-			rotationAngle += 360.0f;
-
-		//Assing player rotation
-		player.rotation = -rotationAngle;
+		player.rotation = rotationAngle;
 	}
 
 	void SetPlayerAcceleration()
 	{
-		float angleInRadians = rotationAngle * (PI / 180);
+		Vector2 newVelocity = Utils::CalculateVelocityFromAngle(rotationAngle, player.acceleration * GetFrameTime());
 
-		player.speed.x += player.acceleration * cos(angleInRadians);
-		player.speed.y += (-player.acceleration) * sin(angleInRadians);
+		player.speed.x += newVelocity.x;
+		player.speed.y += newVelocity.y;
 
 		float speedMagnitude = static_cast <float> (sqrt(pow(player.speed.x, 2) + pow(player.speed.y, 2)));
 		if (speedMagnitude > player.maxAcceleration) {
