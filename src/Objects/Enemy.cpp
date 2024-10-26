@@ -26,7 +26,15 @@ namespace Enemy
 
 	void Load()
 	{
-		CreateEnemies();
+		if (enemies.empty())
+		{
+			CreateEnemies();
+		}
+		else
+		{
+			enemies.erase(enemies.begin(), enemies.end());
+			CreateEnemies();
+		}
 	}
 
 	void Draw()
