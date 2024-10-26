@@ -24,6 +24,8 @@ namespace Gameplay
 	static Vector2 mousePosition;
 	static float r;
 	static float rotationAngle;
+	static const float enemyRemovalTime = 5.0f;
+	static float enemyRemovalCount = 0.0f;
 
 	static Texture2D background;
 
@@ -37,6 +39,7 @@ namespace Gameplay
 	static void ManageEnemies();
 	static void MoveEnemy(EnemyNS::Enemy& enemy);
 	static void KeepEnemyOnScreen(EnemyNS::Enemy& enemy);
+	static void RemoveInactiveEnemies();
 
 	//Bullet movement
 	static void ManageBullets();
@@ -56,6 +59,8 @@ namespace Gameplay
 
 	bool Update()
 	{
+		enemyRemovalCount += GetFrameTime();
+
 		SetPlayerRotation();
 
 		//Shoot
@@ -178,6 +183,7 @@ namespace Gameplay
 	//Enemies
 	void ManageEnemies()
 	{
+		//Movement and collision with player
 		for (int i = 0; i < static_cast <int>(enemies.size()); i++)
 		{
 			if (enemies[i].isActive)
@@ -190,6 +196,13 @@ namespace Gameplay
 					enemies[i].isActive = false;
 				}
 			}
+		}
+
+		//Delete inactive enemies 
+		if (enemyRemovalCount >= enemyRemovalTime)
+		{
+			RemoveInactiveEnemies();
+			enemyRemovalCount = 0.0f;
 		}
 	}
 
@@ -214,6 +227,24 @@ namespace Gameplay
 			enemy.collisionShape.center.y = 0 - enemy.collisionShape.radius;
 		else if (enemy.collisionShape.center.y + enemy.collisionShape.radius < 0)
 			enemy.collisionShape.center.y = static_cast <float>(GetScreenHeight()) + enemy.collisionShape.radius;
+
+	}
+
+	static void RemoveInactiveEnemies()
+	{
+		#ifdef _DEBUG
+				cout << "Enemigos antes de la eliminacion: " << enemies.size() << endl;
+		#endif // _DEBUG
+
+
+		auto endOfActiveEnemies = std::remove_if(enemies.begin(), enemies.end(),
+			[](const EnemyNS::Enemy& enemy) { return !enemy.isActive; });
+
+		enemies.erase(endOfActiveEnemies, enemies.end());
+		
+		#ifdef _DEBUG
+				cout << "Enemigos post eliminacion: " << enemies.size() << endl;
+		#endif // _DEBUG
 
 	}
 

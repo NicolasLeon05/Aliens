@@ -81,7 +81,6 @@ namespace Enemy
 			enemies.push_back(division1);
 			enemies.push_back(division2);
 		}
-
 	}
 
 
