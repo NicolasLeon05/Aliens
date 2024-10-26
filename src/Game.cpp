@@ -87,6 +87,8 @@ namespace Game
 				StopMusicStream(music);
 				music = gameplayMusic;
 				PlayMusicStream(music);
+
+				gameplayOnGoing = true;
 				currentScene = CurrentScene::Gameplay;
 			}
 			else if (IsButtonPressed(MainMenu::tutorial))
@@ -111,7 +113,7 @@ namespace Game
 				ResetGame(); //Change for a pause screen
 
 			if (!gameplayOnGoing)
-				currentScene = CurrentScene::MainMenu; //Change for result screen
+				ResetGame(); //Change for result screen
 
 			break;
 		}
