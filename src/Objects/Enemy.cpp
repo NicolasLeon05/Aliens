@@ -7,9 +7,9 @@ namespace Enemy
 {
 	vector <Enemy> enemies;
 
-	static const float spaceShipSize = 17.0f;
-	static const float bigMetalPieceSize = 12.0f;
-	static const float smallMetalPieceSize = 7.0f;
+	static const float spaceShipSize = 22.0f;
+	static const float bigMetalPieceSize = 16.0f;
+	static const float smallMetalPieceSize = 10.0f;
 
 	void CreateEnemies(); //Si le pongo static se rompeee
 
