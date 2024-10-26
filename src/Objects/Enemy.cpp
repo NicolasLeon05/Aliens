@@ -11,11 +11,11 @@ namespace Enemy
 	static const float bigMetalPieceSize = 16.0f;
 	static const float smallMetalPieceSize = 10.0f;
 
-	void CreateEnemies(); //Si le pongo static se rompeee
+	static void CreateEnemies(); //Si le pongo static se rompe
 
-	static Size GetRandomSize();
+	static Size SetRandomSize();
 
-	static void AssignSizeAndSprite(Enemy& enemy);
+	static void SetSprite(Enemy& enemy);
 
 	static void SetRandomPosition(Enemy& enemy);
 
@@ -116,8 +116,8 @@ namespace Enemy
 		{
 			Enemy newEnemy;
 
-			newEnemy.size = GetRandomSize();
-			AssignSizeAndSprite(newEnemy);
+			newEnemy.size = SetRandomSize();
+			SetSprite(newEnemy);
 			SetRandomPosition(newEnemy);
 			SetDirection(newEnemy);
 			SetSpriteProperties(newEnemy);
@@ -127,12 +127,12 @@ namespace Enemy
 		}
 	}
 
-	Size GetRandomSize()
+	Size SetRandomSize()
 	{
 		return Size(rand() % 3);
 	}
 
-	void AssignSizeAndSprite(Enemy& enemy)
+	void SetSprite(Enemy& enemy)
 	{
 		switch (enemy.size)
 		{
@@ -272,7 +272,7 @@ namespace Enemy
 		division.collisionShape.center.x = original.collisionShape.center.x;
 		division.collisionShape.center.y = original.collisionShape.center.y;
 		SetDirection(division);
-		AssignSizeAndSprite(division);
+		SetSprite(division);
 		SetSpriteProperties(division);
 		division.isActive = true;
 	}

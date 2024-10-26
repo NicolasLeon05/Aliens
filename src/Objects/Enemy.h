@@ -36,7 +36,6 @@ namespace Enemy
 	extern vector <Enemy> enemies;
 
 	void Load();
-	void CreateEnemies();
 	void Draw();
 
 	void DivideEnemy(Enemy enemy);
