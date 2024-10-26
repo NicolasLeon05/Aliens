@@ -9,6 +9,8 @@ namespace Player
 
 	void Load()
 	{
+		player.lives = 5;
+
 		player.sprite = LoadTexture("res/Sprite/SpaceShip.png");
 		player.scale = 0.15f;
 		player.source = { 0,0, static_cast<float>(player.sprite.width), static_cast<float>(player.sprite.height) };

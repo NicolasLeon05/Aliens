@@ -12,6 +12,8 @@ namespace Player
 {
 	struct Player
 	{
+		int lives;
+
 		//Drawing
 		Texture2D sprite;
 		Rectangle source;
