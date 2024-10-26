@@ -15,17 +15,18 @@ using namespace SoundManager;
 
 namespace Game
 {
+	static const int screenWidth = 1024;
+	static const int screenHeight = 768;
+
 	enum class CurrentScene
 	{
 		MainMenu, Gameplay, Tutorial
 	};
 
-	CurrentScene currentScene;
+	static CurrentScene currentScene;
 
-	const int screenWidth = 1024;
-	const int screenHeight = 768;
-
-	static float gameShouldClose = false;
+	static float gameShouldClose;
+	static float gameplayOnGoing;
 
 	static Music music;
 
@@ -55,7 +56,11 @@ namespace Game
 	{
 		srand(static_cast<unsigned int>(time(NULL)));
 
+		gameShouldClose = false;
+		gameplayOnGoing = false;
+
 		currentScene = CurrentScene::MainMenu;
+
 		InitWindow(screenWidth, screenHeight, "Aliens");
 
 		SetExitKey(0);
@@ -99,11 +104,15 @@ namespace Game
 
 		case Game::CurrentScene::Gameplay:
 		{
-			Gameplay::Update();
+			gameplayOnGoing = Gameplay::Update();
 
 
 			if (IsKeyReleased(KEY_ESCAPE))
 				ResetGame(); //Change for a pause screen
+
+			if (!gameplayOnGoing)
+				currentScene = CurrentScene::MainMenu; //Change for result screen
+
 			break;
 		}
 

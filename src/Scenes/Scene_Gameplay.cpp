@@ -54,15 +54,17 @@ namespace Gameplay
 		background = LoadTexture("res/Backgrounds/GameplayBackground.png");
 	}
 
-	void Update()
+	bool Update()
 	{
 		SetPlayerRotation();
 
+		//Shoot
 		if (IsMouseButtonPressed(0))
 		{
 			Shoot();			
 		}
 
+		//Move
 		if (IsMouseButtonDown(1))
 		{
 			if (!IsSoundPlaying(accelerateSound))
@@ -81,6 +83,8 @@ namespace Gameplay
 		ManageEnemies();
 
 		ManageBullets();
+
+		return player.lives > 0;
 	}
 
 	void Draw()
@@ -182,8 +186,8 @@ namespace Gameplay
 				KeepEnemyOnScreen(enemies[i]);
 				if (PlayerEnemyAreColliding(enemies[i]))
 				{
+					player.lives--;
 					enemies[i].isActive = false;
-					DivideEnemy(enemies[i]);
 				}
 			}
 		}

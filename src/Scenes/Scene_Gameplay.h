@@ -3,7 +3,7 @@
 namespace Gameplay
 {
 	void Load();
-	void Update();
+	bool Update();
 	void Draw();
 	void Unload();
 }
