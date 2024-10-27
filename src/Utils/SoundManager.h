@@ -8,6 +8,9 @@ namespace SoundManager
 
 	extern Sound accelerateSound;
 	extern Sound shootSound;
+	extern Sound destroyEnemySound;
+	extern Sound getHitSound;
+	extern Sound getLifeSound;
 	
 	void Load();
 	void Unload();

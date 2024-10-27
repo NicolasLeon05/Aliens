@@ -8,7 +8,7 @@
 //Hacer Scene_Pause
 //Hacer un cpp y h para un text que se use en button
 //Agregar tags
-//Encontrar efecto de sonido para disparo, perdida de vida, destruccion de enemigo y seleccion de boton
+//Encontrar efecto de sonido para perdida de vida, destruccion de enemigo y seleccion de boton
 
 int main()
 {

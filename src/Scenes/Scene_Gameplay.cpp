@@ -61,11 +61,13 @@ namespace Gameplay
 	static bool PlayerEnemyAreColliding(EnemyNS::Enemy& enemy);
 	static bool BulletEnemeyAreColliding(BulletNS::Bullet& bullet, EnemyNS::Enemy& enemy);
 
+
 	void Load()
 	{
 		PlayerNS::Load();
 		EnemyNS::Load();
 		background = LoadTexture("res/Backgrounds/GameplayBackground.png");
+		scoreNeeded = 5000;
 	}
 
 	bool Update()
@@ -189,6 +191,7 @@ namespace Gameplay
 	{
 		if (player.score / scoreNeeded == 1)
 		{
+			PlaySound(getLifeSound);
 			player.lives++;
 			scoreNeeded += scoreNeeded;
 		}
@@ -208,6 +211,7 @@ namespace Gameplay
 
 				if (PlayerEnemyAreColliding(enemies[i]))
 				{
+					PlaySound(getHitSound);
 					player.lives--;
 					enemies[i].isActive = false;
 
@@ -287,6 +291,8 @@ namespace Gameplay
 					{
 						if (BulletEnemeyAreColliding(player.weapon.bullets[i], enemies[j]))
 						{
+							PlaySound(destroyEnemySound);
+
 							player.score += enemies[i].score;
 
 							if (enemies[i].size == Size::SmallMetalPiece)
