@@ -39,6 +39,7 @@
     <ClInclude Include="src\Objects\Circle.h" />
     <ClInclude Include="src\Objects\Enemy.h" />
     <ClInclude Include="src\Objects\Player.h" />
+    <ClInclude Include="src\Objects\Sprite.h" />
     <ClInclude Include="src\Objects\Weapon.h" />
     <ClInclude Include="src\Scenes\Scene_Gameplay.h" />
     <ClInclude Include="src\Scenes\Scene_MainMenu.h" />
