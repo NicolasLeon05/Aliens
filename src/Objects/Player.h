@@ -14,6 +14,7 @@ namespace Player
 	struct Player
 	{
 		int lives;
+		int score;
 
 		//Drawing
 		Vector2 pos;

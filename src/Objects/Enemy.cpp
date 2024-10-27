@@ -16,7 +16,7 @@ namespace Enemy
 
 	static Size SetRandomSize();
 
-	static void SetSprite(Enemy& enemy);
+	static void SetSpriteAndScore(Enemy& enemy);
 
 	static void SetRandomPosition(Enemy& enemy);
 
@@ -125,7 +125,7 @@ namespace Enemy
 		Enemy newEnemy;
 
 		newEnemy.size = SetRandomSize();
-		SetSprite(newEnemy);
+		SetSpriteAndScore(newEnemy);
 		SetRandomPosition(newEnemy);
 		SetDirection(newEnemy);
 		SetSpriteProperties(newEnemy);
@@ -140,7 +140,7 @@ namespace Enemy
 		return Size(rand() % 3);
 	}
 
-	void SetSprite(Enemy& enemy)
+	void SetSpriteAndScore(Enemy& enemy)
 	{
 		switch (enemy.size)
 		{
@@ -149,6 +149,7 @@ namespace Enemy
 			enemy.sprite.texture = LoadTexture("res/Sprite/EnemySpaceship.png");
 			enemy.collisionShape.radius = spaceShipSize;
 			enemy.sprite.scale = 1.8f;
+			enemy.score = 150;
 			break;
 		}
 
@@ -157,6 +158,7 @@ namespace Enemy
 			enemy.sprite.texture = LoadTexture("res/Sprite/BigMetalPiece.png");
 			enemy.collisionShape.radius = bigMetalPieceSize;
 			enemy.sprite.scale = 2.2f;
+			enemy.score = 100;
 			break;
 		}
 
@@ -165,6 +167,7 @@ namespace Enemy
 			enemy.sprite.texture = LoadTexture("res/Sprite/SmallMetalPiece.png");
 			enemy.collisionShape.radius = smallMetalPieceSize;
 			enemy.sprite.scale = 1.6f;
+			enemy.score = 50;
 			break;
 		}
 
@@ -270,7 +273,7 @@ namespace Enemy
 		division.collisionShape.center.y = original.collisionShape.center.y;
 
 		SetDirection(division);
-		SetSprite(division);
+		SetSpriteAndScore(division);
 		SetSpriteProperties(division);
 		division.isActive = true;
 	}

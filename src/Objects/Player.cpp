@@ -14,6 +14,7 @@ namespace Player
 	void Load()
 	{
 		player.lives = 5;
+		player.score = 0;
 
 		//Sprite
 		player.sprite.texture = LoadTexture("res/Sprite/PlayerSpaceship.png");

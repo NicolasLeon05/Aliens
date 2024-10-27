@@ -28,6 +28,8 @@ namespace Enemy
 		Vector2 speed;
 
 		bool isActive;
+
+		int score;
 	};
 
 	extern vector <Enemy> enemies;
