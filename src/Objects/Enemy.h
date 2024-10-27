@@ -3,6 +3,7 @@
 
 #include "raylib.h"
 
+#include "Sprite.h"
 #include "Circle.h"
 
 using namespace std;
@@ -21,11 +22,7 @@ namespace Enemy
 	{
 		Size size;
 
-		Texture2D sprite;
-		Rectangle source;
-		Rectangle destination;
-		float scale;
-		float rotation;
+		Sprite::Sprite sprite;
 
 		Circle::Circle collisionShape;
 		Vector2 speed;

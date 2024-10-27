@@ -2,6 +2,7 @@
 
 #include "raylib.h"
 
+#include "Sprite.h"
 #include "Circle.h"
 #include "Weapon.h"
 
@@ -15,12 +16,8 @@ namespace Player
 		int lives;
 
 		//Drawing
-		Texture2D sprite;
-		Rectangle source;
-		Rectangle destination;
 		Vector2 pos;
-		float scale;
-		float rotation;
+		Sprite::Sprite sprite;
 		
 		//Collision
 		Circle::Circle collisionShape;

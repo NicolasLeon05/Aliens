@@ -16,23 +16,23 @@ namespace Player
 		player.lives = 5;
 
 		//Sprite
-		player.sprite = LoadTexture("res/Sprite/PlayerSpaceship.png");
-		player.scale = 1.75f;
-		player.source =
+		player.sprite.texture = LoadTexture("res/Sprite/PlayerSpaceship.png");
+		player.sprite.scale = 1.75f;
+		player.sprite.source =
 		{
 			0,
 			0,
-			static_cast<float>(player.sprite.width),
-			static_cast<float>(player.sprite.height)
+			static_cast<float>(player.sprite.texture.width),
+			static_cast<float>(player.sprite.texture.height)
 		};
 
 		player.pos.x = static_cast<float>(GetScreenWidth() / 2);
 		player.pos.y = static_cast<float>(GetScreenHeight() / 2);
 
-		float destinationWidth = player.sprite.width * player.scale;
-		float destinationHeight = player.sprite.height * player.scale;
+		float destinationWidth = player.sprite.texture.width * player.sprite.scale;
+		float destinationHeight = player.sprite.texture.height * player.sprite.scale;
 
-		player.destination =
+		player.sprite.destination = 
 		{
 			player.pos.x,
 			player.pos.y,
@@ -40,8 +40,8 @@ namespace Player
 			destinationHeight
 		};
 
-		float spriteCenterX = player.sprite.width * player.scale / 2;
-		float spriteCenterY = player.sprite.height * player.scale / 2;
+		float spriteCenterX = player.sprite.texture.width * player.sprite.scale / 2;
+		float spriteCenterY = player.sprite.texture.height * player.sprite.scale / 2;
 		spriteCenter = { spriteCenterX, spriteCenterY };
 
 		//Collision
@@ -67,15 +67,13 @@ namespace Player
 		DrawBullets(player.weapon);
 
 		DrawTexturePro(
-			player.sprite,
-			player.source,
-			player.destination,
+			player.sprite.texture,
+			player.sprite.source,
+			player.sprite.destination,
 			spriteCenter,
-			player.rotation,
+			player.sprite.rotation,
 			WHITE
 		);
-
-
 
 		//Center
 #ifdef _DEBUG
@@ -91,7 +89,7 @@ namespace Player
 			{
 				player.weapon.bullets[i].shape.center = player.pos;
 
-				player.weapon.bullets[i].speed = CalculateVelocityFromAngle(player.rotation, player.weapon.bulletSpeed);
+				player.weapon.bullets[i].speed = CalculateVelocityFromAngle(player.sprite.rotation, player.weapon.bulletSpeed);
 
 				player.weapon.bullets[i].isActive = true;
 				break;

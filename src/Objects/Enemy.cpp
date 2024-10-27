@@ -58,15 +58,17 @@ namespace Enemy
 #endif // _DEBUG
 
 				//Draw sprite
-				Vector2 spriteCenter = { enemies[i].sprite.height * enemies[i].scale / 2,
-										 enemies[i].sprite.width * enemies[i].scale / 2
+				Vector2 spriteCenter = 
+				{ 
+					enemies[i].sprite.texture.height * enemies[i].sprite.scale / 2,
+					enemies[i].sprite.texture.width * enemies[i].sprite.scale / 2
 				};
 
-				DrawTexturePro(enemies[i].sprite,
-					enemies[i].source,
-					enemies[i].destination,
+				DrawTexturePro(enemies[i].sprite.texture,
+					enemies[i].sprite.source,
+					enemies[i].sprite.destination,
 					spriteCenter,
-					enemies[i].rotation,
+					enemies[i].sprite.rotation,
 					WHITE);
 
 			}
@@ -140,25 +142,25 @@ namespace Enemy
 		{
 		case Size::SpaceShip:
 		{
-			enemy.sprite = LoadTexture("res/Sprite/EnemySpaceship.png");
+			enemy.sprite.texture = LoadTexture("res/Sprite/EnemySpaceship.png");
 			enemy.collisionShape.radius = spaceShipSize;
-			enemy.scale = 1.8f;
+			enemy.sprite.scale = 1.8f;
 			break;
 		}
 
 		case Size::BigMetalPiece:
 		{
-			enemy.sprite = LoadTexture("res/Sprite/BigMetalPiece.png");
+			enemy.sprite.texture = LoadTexture("res/Sprite/BigMetalPiece.png");
 			enemy.collisionShape.radius = bigMetalPieceSize;
-			enemy.scale = 2.2f;
+			enemy.sprite.scale = 2.2f;
 			break;
 		}
 
 		case Size::SmallMetalPiece:
 		{
-			enemy.sprite = LoadTexture("res/Sprite/SmallMetalPiece.png");
+			enemy.sprite.texture = LoadTexture("res/Sprite/SmallMetalPiece.png");
 			enemy.collisionShape.radius = smallMetalPieceSize;
-			enemy.scale = 1.6f;
+			enemy.sprite.scale = 1.6f;
 			break;
 		}
 
@@ -231,32 +233,38 @@ namespace Enemy
 		float angle = CalculateAngleBetweenPoints(enemy.collisionShape.center, targetPosition);
 
 		// Establecer la velocidad
-		enemy.speed = CalculateVelocityFromAngle(angle, totalSpeed * GetFrameTime());
+		enemy.speed = CalculateVelocityFromAngle(angle, totalSpeed);
 
 	}
 
 	void SetSpriteProperties(Enemy& enemy)
 	{
-		enemy.source = { 0,
-						  0,
-						  static_cast<float>(enemy.sprite.width),
-						  static_cast<float>(enemy.sprite.height)
+		enemy.sprite.source = 
+		{ 
+			0,
+			0,
+			static_cast<float>(enemy.sprite.texture.width),
+			static_cast<float>(enemy.sprite.texture.height)
 		};
 
-		float destinationWidth = enemy.sprite.width * enemy.scale;
-		float destinationHeight = enemy.sprite.height * enemy.scale;
+		float destinationWidth = enemy.sprite.texture.width * enemy.sprite.scale;
+		float destinationHeight = enemy.sprite.texture.height * enemy.sprite.scale;
 
-		enemy.destination = { enemy.collisionShape.center.x,
-							   enemy.collisionShape.center.y,
-							   destinationWidth,
-							   destinationHeight
+		enemy.sprite.destination = 
+		{ 
+			enemy.collisionShape.center.x,
+			enemy.collisionShape.center.y,
+			destinationWidth,
+			destinationHeight
 		};
 	}
 
 	void CreateDividedEnemy(Enemy original, Enemy& division)
 	{
+		division.collisionShape.center = original.collisionShape.center;
 		division.collisionShape.center.x = original.collisionShape.center.x;
 		division.collisionShape.center.y = original.collisionShape.center.y;
+
 		SetDirection(division);
 		SetSprite(division);
 		SetSpriteProperties(division);
