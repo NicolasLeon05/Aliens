@@ -104,7 +104,7 @@ namespace Gameplay
 
 	void Unload()
 	{
-		UnloadTexture(player.sprite);
+		UnloadTexture(player.sprite.texture);
 		UnloadTexture(background);
 	}
 
@@ -117,7 +117,7 @@ namespace Gameplay
 
 		rotationAngle = CalculateAngleBetweenPoints(playerPosition, mousePosition);
 
-		player.rotation = rotationAngle;
+		player.sprite.rotation = rotationAngle;
 	}
 
 	void SetPlayerAcceleration()
@@ -143,16 +143,16 @@ namespace Gameplay
 		player.pos.x += player.speed.x * GetFrameTime();
 		player.pos.y += player.speed.y * GetFrameTime();
 
-		player.destination.x = player.pos.x;
-		player.destination.y = player.pos.y;
+		player.sprite.destination.x = player.pos.x;
+		player.sprite.destination.y = player.pos.y;
 
 		player.collisionShape.center = player.pos;
 	}
 
 	void KeepPlayerOnScreen()
 	{
-		float spriteWidth = static_cast <float> (player.sprite.width) * player.scale / 2;
-		float spriteHeight = static_cast <float> (player.sprite.height) * player.scale / 2;
+		float spriteWidth = static_cast <float> (player.sprite.texture.width) * player.sprite.scale / 2;
+		float spriteHeight = static_cast <float> (player.sprite.texture.height) * player.sprite.scale / 2;
 
 		//Check x axis
 		if (player.pos.x - spriteWidth > GetScreenWidth())
@@ -166,8 +166,8 @@ namespace Gameplay
 		else if (player.pos.y + spriteHeight < 0)
 			player.pos.y = static_cast <float>(GetScreenHeight()) + spriteHeight;
 
-		player.destination.x = player.pos.x;
-		player.destination.y = player.pos.y;
+		player.sprite.destination.x = player.pos.x;
+		player.sprite.destination.y = player.pos.y;
 	}
 
 
@@ -181,9 +181,6 @@ namespace Gameplay
 			{
 				MoveEnemy(enemies[i]);
 				KeepEnemyOnScreen(enemies[i]);
-
-				enemies[i].destination.x = enemies[i].collisionShape.center.x;
-				enemies[i].destination.y = enemies[i].collisionShape.center.y;
 
 				if (PlayerEnemyAreColliding(enemies[i]))
 				{
@@ -203,10 +200,10 @@ namespace Gameplay
 
 	void MoveEnemy(EnemyNS::Enemy& enemy)
 	{
-		enemy.collisionShape.center.x += enemy.speed.x;
-		enemy.collisionShape.center.y += enemy.speed.y;
-		enemy.collisionShape.center.x = enemy.collisionShape.center.x;
-		enemy.collisionShape.center.y = enemy.collisionShape.center.y;
+		enemy.collisionShape.center.x += enemy.speed.x * GetFrameTime();
+		enemy.collisionShape.center.y += enemy.speed.y * GetFrameTime();
+		enemy.sprite.destination.x = enemy.collisionShape.center.x;
+		enemy.sprite.destination.y = enemy.collisionShape.center.y;
 	}
 
 	void KeepEnemyOnScreen(EnemyNS::Enemy& enemy)
@@ -225,24 +222,28 @@ namespace Gameplay
 
 	}
 
-	static void RemoveInactiveEnemies()
+	void RemoveInactiveEnemies()
 	{
 		#ifdef _DEBUG
 				cout << "Enemigos antes de la eliminacion: " << enemies.size() << endl;
 		#endif // _DEBUG
 
-
-		auto endOfActiveEnemies = std::remove_if(enemies.begin(), enemies.end(),
+		//Find 
+		auto FirstInactiveEnemy = remove_if(enemies.begin(), enemies.end(),
 			[](const EnemyNS::Enemy& enemy) { return !enemy.isActive; });
+		
+		for (auto it = FirstInactiveEnemy; it != enemies.end(); ++it)
+		{
+			UnloadTexture(it->sprite.texture); // Descarga la textura del enemigo inactivo
+		}
 
-		enemies.erase(endOfActiveEnemies, enemies.end());
+		enemies.erase(FirstInactiveEnemy, enemies.end());
 		
 		#ifdef _DEBUG
 				cout << "Enemigos post eliminacion: " << enemies.size() << endl;
 		#endif // _DEBUG
 
 	}
-
 
 	//Bullets
 	void ManageBullets()
