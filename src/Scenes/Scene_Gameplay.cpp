@@ -1,6 +1,7 @@
 #include "Scene_Gameplay.h"
 
 #include <iostream>
+#include <string>
 #include <cmath>
 
 #include "raylib.h"
@@ -29,6 +30,8 @@ namespace Gameplay
 
 	static const float enemyRemovalTime = 5.0f;
 	static float enemyRemovalCount = 0.0f;
+
+	static const int fontSize = 40;
 
 	static Texture2D background;
 
@@ -70,7 +73,7 @@ namespace Gameplay
 		//Shoot
 		if (IsMouseButtonPressed(0))
 		{
-			Shoot();			
+			Shoot();
 		}
 
 		//Move
@@ -102,6 +105,9 @@ namespace Gameplay
 		DrawTexture(background, 0, 0, WHITE);
 		PlayerNS::Draw();
 		EnemyNS::Draw();
+
+		DrawText((to_string(player.score)).c_str(), GetScreenWidth() - fontSize * 5, fontSize / 2, fontSize, MAGENTA);
+		DrawText((to_string(player.lives)).c_str(), fontSize / 2, fontSize / 2, fontSize, RED);
 	}
 
 	void Unload()
@@ -228,24 +234,24 @@ namespace Gameplay
 
 	void RemoveInactiveEnemies()
 	{
-		#ifdef _DEBUG
-				cout << "Enemigos antes de la eliminacion: " << enemies.size() << endl;
-		#endif // _DEBUG
+#ifdef _DEBUG
+		cout << "Enemigos antes de la eliminacion: " << enemies.size() << endl;
+#endif // _DEBUG
 
 		//Find 
 		auto FirstInactiveEnemy = remove_if(enemies.begin(), enemies.end(),
 			[](const EnemyNS::Enemy& enemy) { return !enemy.isActive; });
-		
+
 		for (auto it = FirstInactiveEnemy; it != enemies.end(); ++it)
 		{
 			UnloadTexture(it->sprite.texture); // Descarga la textura del enemigo inactivo
 		}
 
 		enemies.erase(FirstInactiveEnemy, enemies.end());
-		
-		#ifdef _DEBUG
-				cout << "Enemigos post eliminacion: " << enemies.size() << endl;
-		#endif // _DEBUG
+
+#ifdef _DEBUG
+		cout << "Enemigos post eliminacion: " << enemies.size() << endl;
+#endif // _DEBUG
 
 	}
 
@@ -270,6 +276,8 @@ namespace Gameplay
 					{
 						if (BulletEnemeyAreColliding(player.weapon.bullets[i], enemies[j]))
 						{
+							player.score += enemies[i].score;
+
 							if (enemies[i].size == Size::SmallMetalPiece)
 							{
 								RespawnEnemy();
