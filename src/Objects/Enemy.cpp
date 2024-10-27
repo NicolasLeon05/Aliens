@@ -14,7 +14,7 @@ namespace Enemy
 	static const float bigMetalPieceSize = 16.0f;
 	static const float smallMetalPieceSize = 10.0f;
 
-	static void CreateEnemies();
+	static void CreateEnemy(Enemy& newEnemy);
 
 	static Size SetRandomSize();
 
@@ -30,15 +30,10 @@ namespace Enemy
 
 
 	void Load()
-	{
-		if (enemies.empty())
+	{		
+		for (int i = 0; i < startingEnemies; i++)
 		{
-			CreateEnemies();
-		}
-		else
-		{
-			enemies.erase(enemies.begin(), enemies.end());
-			CreateEnemies();
+			CreateEnemy(enemies[i]);
 		}
 	}
 
@@ -58,8 +53,8 @@ namespace Enemy
 #endif // _DEBUG
 
 				//Draw sprite
-				Vector2 spriteCenter = 
-				{ 
+				Vector2 spriteCenter =
+				{
 					enemies[i].sprite.texture.height * enemies[i].sprite.scale / 2,
 					enemies[i].sprite.texture.width * enemies[i].sprite.scale / 2
 				};
@@ -73,6 +68,15 @@ namespace Enemy
 
 			}
 		}
+	}
+
+	void Unload()
+	{
+		for (int i = 0; i < static_cast<int>(enemies.size()); i++)
+		{
+			UnloadTexture(enemies[i].sprite.texture);
+		}
+		enemies.erase(enemies.begin(), enemies.end());
 	}
 
 	void DivideEnemy(Enemy enemy)
@@ -114,21 +118,16 @@ namespace Enemy
 	}
 
 
-	void CreateEnemies()
+	void CreateEnemy(Enemy& newEnemy)
 	{
-		for (int i = 0; i < startingEnemies; i++)
-		{
-			Enemy newEnemy;
+		newEnemy.size = SetRandomSize();
+		SetSprite(newEnemy);
+		SetRandomPosition(newEnemy);
+		SetDirection(newEnemy);
+		SetSpriteProperties(newEnemy);
+		newEnemy.isActive = true;
 
-			newEnemy.size = SetRandomSize();
-			SetSprite(newEnemy);
-			SetRandomPosition(newEnemy);
-			SetDirection(newEnemy);
-			SetSpriteProperties(newEnemy);
-			newEnemy.isActive = true;
-
-			enemies.push_back(newEnemy);
-		}
+		enemies.push_back(newEnemy);
 	}
 
 	Size SetRandomSize()
@@ -239,8 +238,8 @@ namespace Enemy
 
 	void SetSpriteProperties(Enemy& enemy)
 	{
-		enemy.sprite.source = 
-		{ 
+		enemy.sprite.source =
+		{
 			0,
 			0,
 			static_cast<float>(enemy.sprite.texture.width),
@@ -250,8 +249,8 @@ namespace Enemy
 		float destinationWidth = enemy.sprite.texture.width * enemy.sprite.scale;
 		float destinationHeight = enemy.sprite.texture.height * enemy.sprite.scale;
 
-		enemy.sprite.destination = 
-		{ 
+		enemy.sprite.destination =
+		{
 			enemy.collisionShape.center.x,
 			enemy.collisionShape.center.y,
 			destinationWidth,

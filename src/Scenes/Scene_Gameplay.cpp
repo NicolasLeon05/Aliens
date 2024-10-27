@@ -104,7 +104,8 @@ namespace Gameplay
 
 	void Unload()
 	{
-		UnloadTexture(player.sprite.texture);
+		EnemyNS::Unload();
+		PlayerNS::Unload();
 		UnloadTexture(background);
 	}
 

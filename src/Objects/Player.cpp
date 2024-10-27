@@ -81,6 +81,11 @@ namespace Player
 #endif // _DEBUG
 	}
 
+	void Unload()
+	{
+		UnloadTexture(player.sprite.texture);
+	}
+
 	void Shoot()
 	{
 		for (int i = 0; i < maxBullets; i++)

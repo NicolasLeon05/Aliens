@@ -35,8 +35,8 @@ namespace Player
 	extern Player player;
 
 	void Load();
-
 	void Draw();
+	void Unload();
 
 	void Shoot();
 }
