@@ -33,6 +33,8 @@ namespace Gameplay
 
 	static const int fontSize = 40;
 
+	static int scoreNeeded = 5000;
+
 	static Texture2D background;
 
 	//Player
@@ -40,6 +42,7 @@ namespace Gameplay
 	static void SetPlayerAcceleration();
 	static void MovePlayer();
 	static void KeepPlayerOnScreen();
+	static void AddLife();
 
 	//Enemies
 	static void ManageEnemies();
@@ -91,6 +94,7 @@ namespace Gameplay
 
 		MovePlayer();
 		KeepPlayerOnScreen();
+		AddLife();
 
 		ManageEnemies();
 
@@ -177,6 +181,15 @@ namespace Gameplay
 
 		player.sprite.destination.x = player.pos.x;
 		player.sprite.destination.y = player.pos.y;
+	}
+
+	void AddLife()
+	{
+		if (player.score / scoreNeeded == 1)
+		{
+			player.lives++;
+			scoreNeeded += scoreNeeded;
+		}
 	}
 
 
