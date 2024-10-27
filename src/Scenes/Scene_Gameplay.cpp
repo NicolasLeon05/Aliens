@@ -78,6 +78,7 @@ namespace Gameplay
 		if (IsMouseButtonPressed(0))
 		{
 			Shoot();
+			PlaySound(shootSound);
 		}
 
 		//Move

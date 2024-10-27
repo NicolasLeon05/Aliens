@@ -7,6 +7,7 @@ namespace SoundManager
 	extern Music gameplayMusic;
 
 	extern Sound accelerateSound;
+	extern Sound shootSound;
 	
 	void Load();
 	void Unload();
