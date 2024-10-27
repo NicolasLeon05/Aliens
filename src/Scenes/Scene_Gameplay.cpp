@@ -33,7 +33,8 @@ namespace Gameplay
 
 	static const int fontSize = 40;
 
-	static int scoreNeeded = 5000;
+	static const int baseScoreToGetHp = 5000;
+	static int scoreToGetHp = baseScoreToGetHp;
 
 	static Texture2D background;
 
@@ -67,7 +68,7 @@ namespace Gameplay
 		PlayerNS::Load();
 		EnemyNS::Load();
 		background = LoadTexture("res/Backgrounds/GameplayBackground.png");
-		scoreNeeded = 5000;
+		scoreToGetHp = baseScoreToGetHp;
 	}
 
 	bool Update()
@@ -189,11 +190,11 @@ namespace Gameplay
 
 	void AddLife()
 	{
-		if (player.score / scoreNeeded == 1)
+		if (player.score / scoreToGetHp == 1)
 		{
 			PlaySound(getLifeSound);
 			player.lives++;
-			scoreNeeded += scoreNeeded;
+			scoreToGetHp += baseScoreToGetHp;
 		}
 	}
 
