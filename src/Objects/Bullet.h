@@ -2,6 +2,7 @@
 
 #include "raylib.h"
 
+#include "Sprite.h"
 #include "Circle.h"
 
 namespace Bullet
@@ -9,7 +10,8 @@ namespace Bullet
 
 	struct Bullet
 	{
-		Circle::Circle shape;
+		Sprite::Sprite sprite;
+		Circle::Circle collisionShape;
 		Vector2 speed;
 		Color color;
 		bool isActive;

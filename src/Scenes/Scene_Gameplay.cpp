@@ -53,6 +53,7 @@ namespace Gameplay
 
 	//Bullet
 	static void ManageBullets();
+	static void SetBulletRotation(BulletNS::Bullet& bullet);
 	static void MoveBullet(BulletNS::Bullet& bullet);
 	static void DeactivateBullet(BulletNS::Bullet& bullet);
 
@@ -255,11 +256,6 @@ namespace Gameplay
 		auto FirstInactiveEnemy = remove_if(enemies.begin(), enemies.end(),
 			[](const EnemyNS::Enemy& enemy) { return !enemy.isActive; });
 
-		for (auto it = FirstInactiveEnemy; it != enemies.end(); ++it)
-		{
-			UnloadTexture(it->sprite.texture); // Descarga la textura del enemigo inactivo
-		}
-
 		enemies.erase(FirstInactiveEnemy, enemies.end());
 
 #ifdef _DEBUG
@@ -280,6 +276,7 @@ namespace Gameplay
 		{
 			if (player.weapon.bullets[i].isActive)
 			{
+				SetBulletRotation(player.weapon.bullets[i]);
 				MoveBullet(player.weapon.bullets[i]);
 				DeactivateBullet(player.weapon.bullets[i]);
 
@@ -309,18 +306,30 @@ namespace Gameplay
 		}
 	}
 
+	void SetBulletRotation(BulletNS::Bullet& bullet)
+	{
+		Vector2 mousePosition = GetMousePosition();
+		Vector2 bulletPosition = bullet.collisionShape.center;
+
+		rotationAngle = CalculateAngleBetweenPoints(bulletPosition, mousePosition);
+
+		bullet.sprite.rotation = rotationAngle;
+	}
+
 	void MoveBullet(BulletNS::Bullet& bullet)
 	{
-		bullet.shape.center.x += bullet.speed.x * GetFrameTime();
-		bullet.shape.center.y += bullet.speed.y * GetFrameTime();
-	}
+		bullet.collisionShape.center.x += bullet.speed.x * GetFrameTime();
+		bullet.collisionShape.center.y += bullet.speed.y * GetFrameTime();
+		bullet.sprite.destination.x = bullet.collisionShape.center.x;
+		bullet.sprite.destination.y = bullet.collisionShape.center.y;
+	}	
 
 	void DeactivateBullet(BulletNS::Bullet& bullet)
 	{
-		if (bullet.shape.center.x < 0 ||
-			bullet.shape.center.x > GetScreenWidth() ||
-			bullet.shape.center.y < 0 ||
-			bullet.shape.center.y > GetScreenHeight())
+		if (bullet.collisionShape.center.x < 0 ||
+			bullet.collisionShape.center.x > GetScreenWidth() ||
+			bullet.collisionShape.center.y < 0 ||
+			bullet.collisionShape.center.y > GetScreenHeight())
 		{
 			bullet.isActive = false;
 		}
@@ -339,11 +348,11 @@ namespace Gameplay
 
 	bool BulletEnemeyAreColliding(BulletNS::Bullet& bullet, EnemyNS::Enemy& enemy)
 	{
-		float distX = bullet.shape.center.x - enemy.collisionShape.center.x;
-		float distY = bullet.shape.center.y - enemy.collisionShape.center.y;
+		float distX = bullet.collisionShape.center.x - enemy.collisionShape.center.x;
+		float distY = bullet.collisionShape.center.y - enemy.collisionShape.center.y;
 		float distance = sqrt((distX * distX) + (distY * distY));
 
-		return distance <= bullet.shape.radius + enemy.collisionShape.radius;
+		return distance <= bullet.collisionShape.radius + enemy.collisionShape.radius;
 	}
 
 }

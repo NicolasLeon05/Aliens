@@ -14,6 +14,10 @@ namespace Enemy
 	static const float bigMetalPieceSize = 16.0f;
 	static const float smallMetalPieceSize = 10.0f;
 
+	static Texture2D spaceShipTexture;
+	static Texture2D bigMetalPieceTexture;
+	static Texture2D smallMetalPieceTexture;
+
 	static Size SetRandomSize();
 
 	static void SetSpriteAndScore(Enemy& enemy);
@@ -28,7 +32,11 @@ namespace Enemy
 
 
 	void Load()
-	{		
+	{
+		spaceShipTexture = LoadTexture("res/Sprite/EnemySpaceship.png");
+		bigMetalPieceTexture = LoadTexture("res/Sprite/BigMetalPiece.png");
+		smallMetalPieceTexture = LoadTexture("res/Sprite/SmallMetalPiece.png");
+
 		if (!enemies.empty())
 		{
 			enemies.erase(enemies.begin(), enemies.end());
@@ -75,10 +83,10 @@ namespace Enemy
 
 	void Unload()
 	{
-		for (int i = 0; i < static_cast<int>(enemies.size()); i++)
-		{
-			UnloadTexture(enemies[i].sprite.texture);
-		}
+		UnloadTexture(spaceShipTexture);
+		UnloadTexture(bigMetalPieceTexture);
+		UnloadTexture(smallMetalPieceTexture);
+
 		enemies.erase(enemies.begin(), enemies.end());
 	}
 
@@ -146,7 +154,7 @@ namespace Enemy
 		{
 		case Size::SpaceShip:
 		{
-			enemy.sprite.texture = LoadTexture("res/Sprite/EnemySpaceship.png");
+			enemy.sprite.texture = spaceShipTexture;
 			enemy.collisionShape.radius = spaceShipSize;
 			enemy.sprite.scale = 1.8f;
 			enemy.score = 150;
@@ -155,7 +163,7 @@ namespace Enemy
 
 		case Size::BigMetalPiece:
 		{
-			enemy.sprite.texture = LoadTexture("res/Sprite/BigMetalPiece.png");
+			enemy.sprite.texture = bigMetalPieceTexture;
 			enemy.collisionShape.radius = bigMetalPieceSize;
 			enemy.sprite.scale = 2.2f;
 			enemy.score = 100;
@@ -164,7 +172,7 @@ namespace Enemy
 
 		case Size::SmallMetalPiece:
 		{
-			enemy.sprite.texture = LoadTexture("res/Sprite/SmallMetalPiece.png");
+			enemy.sprite.texture = smallMetalPieceTexture;
 			enemy.collisionShape.radius = smallMetalPieceSize;
 			enemy.sprite.scale = 1.6f;
 			enemy.score = 50;

@@ -33,7 +33,7 @@ namespace Player
 		float destinationWidth = player.sprite.texture.width * player.sprite.scale;
 		float destinationHeight = player.sprite.texture.height * player.sprite.scale;
 
-		player.sprite.destination = 
+		player.sprite.destination =
 		{
 			player.pos.x,
 			player.pos.y,
@@ -93,7 +93,9 @@ namespace Player
 		{
 			if (!player.weapon.bullets[i].isActive)
 			{
-				player.weapon.bullets[i].shape.center = player.pos;
+				player.weapon.bullets[i].collisionShape.center = player.pos;
+				player.weapon.bullets[i].sprite.destination.x = player.pos.x;
+				player.weapon.bullets[i].sprite.destination.y = player.pos.y;
 
 				player.weapon.bullets[i].speed = CalculateVelocityFromAngle(player.sprite.rotation, player.weapon.bulletSpeed);
 
