@@ -36,5 +36,6 @@ namespace Enemy
 	void Draw();
 	void Unload();
 
+	void CreateEnemy();
 	void DivideEnemy(Enemy enemy);
 }

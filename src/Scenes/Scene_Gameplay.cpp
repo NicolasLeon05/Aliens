@@ -26,6 +26,7 @@ namespace Gameplay
 {
 	static float r;
 	static float rotationAngle;
+
 	static const float enemyRemovalTime = 5.0f;
 	static float enemyRemovalCount = 0.0f;
 
@@ -42,6 +43,7 @@ namespace Gameplay
 	static void MoveEnemy(EnemyNS::Enemy& enemy);
 	static void KeepEnemyOnScreen(EnemyNS::Enemy& enemy);
 	static void RemoveInactiveEnemies();
+	static void RespawnEnemy();
 
 	//Bullet
 	static void ManageBullets();
@@ -187,6 +189,7 @@ namespace Gameplay
 				{
 					player.lives--;
 					enemies[i].isActive = false;
+
 				}
 			}
 		}
@@ -246,6 +249,11 @@ namespace Gameplay
 
 	}
 
+	void RespawnEnemy()
+	{
+		CreateEnemy();
+	}
+
 	//Bullets
 	void ManageBullets()
 	{
@@ -262,6 +270,11 @@ namespace Gameplay
 					{
 						if (BulletEnemeyAreColliding(player.weapon.bullets[i], enemies[j]))
 						{
+							if (enemies[i].size == Size::SmallMetalPiece)
+							{
+								RespawnEnemy();
+							}
+
 							player.weapon.bullets[i].isActive = false;
 							enemies[j].isActive = false;
 							DivideEnemy(enemies[j]);

@@ -14,8 +14,6 @@ namespace Enemy
 	static const float bigMetalPieceSize = 16.0f;
 	static const float smallMetalPieceSize = 10.0f;
 
-	static void CreateEnemy(Enemy& newEnemy);
-
 	static Size SetRandomSize();
 
 	static void SetSprite(Enemy& enemy);
@@ -31,9 +29,14 @@ namespace Enemy
 
 	void Load()
 	{		
+		if (!enemies.empty())
+		{
+			enemies.erase(enemies.begin(), enemies.end());
+		}
+
 		for (int i = 0; i < startingEnemies; i++)
 		{
-			CreateEnemy(enemies[i]);
+			CreateEnemy();
 		}
 	}
 
@@ -117,9 +120,10 @@ namespace Enemy
 		}
 	}
 
-
-	void CreateEnemy(Enemy& newEnemy)
+	void CreateEnemy()
 	{
+		Enemy newEnemy;
+
 		newEnemy.size = SetRandomSize();
 		SetSprite(newEnemy);
 		SetRandomPosition(newEnemy);
@@ -129,6 +133,7 @@ namespace Enemy
 
 		enemies.push_back(newEnemy);
 	}
+
 
 	Size SetRandomSize()
 	{
