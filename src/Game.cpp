@@ -7,6 +7,7 @@
 #include "Scene_MainMenu.h"
 #include "Scene_Gameplay.h"
 #include "Scene_Tutorial.h"
+#include "Scene_Credits.h"
 #include "Button.h"
 #include "SoundManager.h"
 
@@ -20,7 +21,7 @@ namespace Game
 
 	enum class CurrentScene
 	{
-		MainMenu, Gameplay, Tutorial
+		MainMenu, Gameplay, Tutorial, Credits, Pause, Results
 	};
 
 	static CurrentScene currentScene;
@@ -69,8 +70,9 @@ namespace Game
 		music = menuMusic;
 
 		MainMenu::Load();
-		Tutorial::Load();
 		Gameplay::Load();
+		Tutorial::Load();
+		Credits::Load();
 	}
 
 
@@ -94,6 +96,10 @@ namespace Game
 			else if (IsButtonPressed(MainMenu::tutorial))
 			{
 				currentScene = CurrentScene::Tutorial;
+			}
+			else if (IsButtonPressed(MainMenu::credits))
+			{
+				currentScene = CurrentScene::Credits;
 			}
 			else if (IsButtonPressed(MainMenu::exit))
 			{
@@ -120,7 +126,16 @@ namespace Game
 
 		case Game::CurrentScene::Tutorial:
 		{
-			if (IsButtonPressed(Tutorial::exit))
+			if (IsButtonPressed(Tutorial::returnToMenu))
+			{
+				currentScene = CurrentScene::MainMenu;
+			}
+			break;
+		}
+
+		case Game::CurrentScene::Credits:
+		{
+			if (IsButtonPressed(Credits::returnToMenu))
 			{
 				currentScene = CurrentScene::MainMenu;
 			}
@@ -158,6 +173,12 @@ namespace Game
 		case Game::CurrentScene::Tutorial:
 		{
 			Tutorial::Draw();
+			break;
+		}
+
+		case Game::CurrentScene::Credits:
+		{
+			Credits::Draw();
 			break;
 		}
 
