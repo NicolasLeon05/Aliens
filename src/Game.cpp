@@ -135,6 +135,8 @@ namespace Game
 
 		case Game::CurrentScene::Credits:
 		{
+			Credits::Update();
+
 			if (IsButtonPressed(Credits::returnToMenu))
 			{
 				currentScene = CurrentScene::MainMenu;

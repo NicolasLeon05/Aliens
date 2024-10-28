@@ -57,6 +57,9 @@
     <ClCompile Include="src\Scenes\Scene_Credits.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="src\Interface\Text.cpp">
+      <Filter>Interface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -100,6 +103,9 @@
     </ClInclude>
     <ClInclude Include="src\Scenes\Scene_Credits.h">
       <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Interface\Text.h">
+      <Filter>Interface</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

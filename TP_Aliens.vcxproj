@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\Interface\Button.cpp" />
+    <ClCompile Include="src\Interface\Text.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Objects\Bullet.cpp" />
     <ClCompile Include="src\Objects\Enemy.cpp" />
@@ -36,6 +37,7 @@
   <ItemGroup>
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\Interface\Button.h" />
+    <ClInclude Include="src\Interface\Text.h" />
     <ClInclude Include="src\Objects\Bullet.h" />
     <ClInclude Include="src\Objects\Circle.h" />
     <ClInclude Include="src\Objects\Enemy.h" />

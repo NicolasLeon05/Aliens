@@ -18,6 +18,3 @@ namespace Button
 
 	bool IsButtonPressed(Button& button);
 }
-
-
-

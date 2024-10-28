@@ -1,8 +1,9 @@
 #include "Scene_Credits.h"
 
+#include "Text.h"
+
 namespace Credits
 {
-	Bton::Button returnToMenu;
 
 	static int regularFontSize = 25;
 	static int titleFontSize = 70;
@@ -15,9 +16,38 @@ namespace Credits
 	static float screenCenterX;
 	static float buttonCenterX;
 
-	static int screenDivision = 15;
+	static int screenDivision = 20;
+	static int heightMultiplyer = 1;
 	static int textSeparation = 8;
 
+	Bton::Button returnToMenu;
+
+	Text::Text developerText;
+	Text::Text spritesText;
+	Text::Text spritesUrlText;
+	Text::Text musicText;
+	Text::Text musicUrlText;
+	Text::Text shootText;
+	Text::Text shootUrlText;
+	Text::Text accelerateText;
+	Text::Text accelerateUrlText;
+	Text::Text destroyEnemyText;
+	Text::Text destroyEnemyUrlText;
+	Text::Text loseLifeText;
+	Text::Text loseLifeUrlText;
+	Text::Text gainLifeText;
+	Text::Text gainLifeUrlText;
+	Text::Text backgroundsText;
+	Text::Text backgroundsUrlText;
+
+	Bton::Button spritesUrlButton;
+	Bton::Button musicUrlButton;
+	Bton::Button shootUrlButton;
+	Bton::Button accelerateUrlButton;
+	Bton::Button destroyEnemyUrlButton;
+	Bton::Button loseLifeUrlButton;
+	Bton::Button gainLifeUrlButton;
+	Bton::Button backgroundsUrlButton;
 
 	void Load()
 	{
@@ -25,155 +55,150 @@ namespace Credits
 		screenCenterX = static_cast<float>(GetScreenWidth() / 2);
 		buttonCenterX = screenCenterX - buttonWidth / 2;
 
-		returnToMenu = Bton::Create("Return", buttonCenterX, static_cast<float>(screenHeight / 6 * 5), buttonWidth, buttonHeight);
+
+		//Texts
+		developerText = Text::CreateText("Developed by: Nicolas Leon", titleFontSize, { screenCenterX, screenHeight / screenDivision * heightMultiplyer }, RED);
+		Text::SetTextLength(developerText);
+
+		heightMultiplyer += 2;
+
+		spritesText = Text::CreateText("Sprites by MattWalkden", regularFontSize, { screenCenterX, screenHeight / screenDivision * heightMultiplyer }, ORANGE);
+		Text::SetTextLength(spritesText);
+
+
+		spritesUrlText = Text::CreateText("(mattwalkden.itch.io/lunar-battle-pack)", regularFontSize, { screenCenterX, screenHeight / screenDivision * heightMultiplyer }, BLUE);
+		Text::SetTextLength(spritesUrlText);
+
+		heightMultiplyer++;
+
+		musicText = Text::CreateText("Music by SunoAI", regularFontSize, { screenCenterX, screenHeight / screenDivision * heightMultiplyer }, ORANGE);
+		Text::SetTextLength(musicText);
+
+
+		musicUrlText = Text::CreateText("(suno.com)", regularFontSize, { screenCenterX, screenHeight / screenDivision * heightMultiplyer }, BLUE);
+		Text::SetTextLength(musicUrlText);
+
+		heightMultiplyer++;
+
+		shootText = Text::CreateText("Shoot sound by CHAKONG", regularFontSize, { screenCenterX, screenHeight / screenDivision * heightMultiplyer }, ORANGE);
+		Text::SetTextLength(shootText);
+
+		heightMultiplyer++;
+
+		shootUrlText = Text::CreateText("(pixabay.com/es/sound-effects/laser-gun-shot-sound-future-sci-fi-lazer-wobble-chakongaudio-174883)", regularFontSize - textSeparation, { screenCenterX, screenHeight / screenDivision * heightMultiplyer }, BLUE);
+		Text::SetTextLength(shootUrlText);
+
+		heightMultiplyer++;
+
+		accelerateText = Text::CreateText("Accelerate sound by Pixabay", regularFontSize, { screenCenterX, screenHeight / screenDivision * heightMultiplyer }, ORANGE);
+		Text::SetTextLength(accelerateText);
+
+		heightMultiplyer++;
+
+		accelerateUrlText = Text::CreateText("(pixabay.com/es/sound-effects/065110-seamless-rocket-booster-roar-amp-crackle-42487)", regularFontSize - textSeparation, { screenCenterX, screenHeight / screenDivision * heightMultiplyer }, BLUE);
+		Text::SetTextLength(accelerateUrlText);
+
+		heightMultiplyer++;
+
+		destroyEnemyText = Text::CreateText("Enemy destruction sound by Driken5482", regularFontSize, { screenCenterX, screenHeight / screenDivision * heightMultiplyer }, ORANGE);
+		Text::SetTextLength(destroyEnemyText);
+
+		heightMultiplyer++;
+
+		destroyEnemyUrlText = Text::CreateText("(pixabay.com/es/sound-effects/retro-explode-1-236678)", regularFontSize - textSeparation, { screenCenterX, screenHeight / screenDivision * heightMultiplyer }, BLUE);
+		Text::SetTextLength(destroyEnemyUrlText);
+
+		heightMultiplyer++;
+
+		loseLifeText = Text::CreateText("Lose life sound by Driken5482", regularFontSize, { screenCenterX, screenHeight / screenDivision * heightMultiplyer }, ORANGE);
+		Text::SetTextLength(loseLifeText);
+
+		heightMultiplyer++;
+
+		loseLifeUrlText = Text::CreateText("(pixabay.com/es/sound-effects/retro-hurt-1-236672)", regularFontSize - textSeparation, { screenCenterX, screenHeight / screenDivision * heightMultiplyer }, BLUE);
+		Text::SetTextLength(loseLifeUrlText);
+
+		heightMultiplyer++;
+
+		gainLifeText = Text::CreateText("Gain life sound by Driken5482", regularFontSize, { screenCenterX, screenHeight / screenDivision * heightMultiplyer }, ORANGE);
+		Text::SetTextLength(gainLifeText);
+
+		heightMultiplyer++;
+
+		gainLifeUrlText = Text::CreateText("(pixabay.com/es/sound-effects/coin-c-02-102844)", regularFontSize - textSeparation, { screenCenterX, screenHeight / screenDivision * heightMultiplyer }, BLUE);
+		Text::SetTextLength(gainLifeUrlText);
+
+		heightMultiplyer++;
+
+		backgroundsText = Text::CreateText("Backgrounds by Leonardo AI", regularFontSize, { screenCenterX, screenHeight / screenDivision * heightMultiplyer }, ORANGE);
+		Text::SetTextLength(backgroundsText);
+
+
+		backgroundsUrlText = Text::CreateText("(mattwalkden.itch.io/lunar-battle-pack)", regularFontSize, { screenCenterX, screenHeight / screenDivision * heightMultiplyer }, BLUE);
+		Text::SetTextLength(backgroundsUrlText);
+
+
+		//Buttons
+		spritesUrlButton = Bton::Create("", spritesUrlText.pos.x, spritesUrlText.pos.y, static_cast<float>(spritesUrlText.length), static_cast<float>(regularFontSize));
+
+		musicUrlButton = Bton::Create("", musicUrlText.pos.x, musicUrlText.pos.y, static_cast<float>(musicUrlText.length), static_cast<float>(regularFontSize));
+
+		shootUrlButton = Bton::Create("", shootUrlText.pos.x, shootUrlText.pos.y, static_cast<float>(shootUrlText.length), static_cast<float>(regularFontSize));
+
+		accelerateUrlButton = Bton::Create("", accelerateUrlText.pos.x, accelerateUrlText.pos.y, static_cast<float>(accelerateUrlText.length), static_cast<float>(regularFontSize));
+
+		destroyEnemyUrlButton = Bton::Create("", destroyEnemyUrlText.pos.x, destroyEnemyUrlText.pos.y, static_cast<float>(destroyEnemyUrlText.length), static_cast<float>(regularFontSize));
+
+		loseLifeUrlButton = Bton::Create("", loseLifeUrlText.pos.x, loseLifeUrlText.pos.y, static_cast<float>(loseLifeUrlText.length), static_cast<float>(regularFontSize));
+
+		gainLifeUrlButton = Bton::Create("", gainLifeUrlText.pos.x, gainLifeUrlText.pos.y, static_cast<float>(gainLifeUrlText.length), static_cast<float>(regularFontSize));
+
+		backgroundsUrlButton = Bton::Create("", backgroundsUrlText.pos.x, backgroundsUrlText.pos.y, static_cast<float>(backgroundsUrlText.length), static_cast<float>(regularFontSize));
+
+
+
+		returnToMenu = Bton::Create("Return", buttonCenterX, screenHeight / 6 * 5, buttonWidth, buttonHeight);
 	}
 
+	void Update()
+	{
+		//Check clicks on links
+		if (Bton::IsButtonPressed(spritesUrlButton)) OpenURL("https://mattwalkden.itch.io/lunar-battle-pack");
+		if (Bton::IsButtonPressed(musicUrlButton)) OpenURL("https://suno.com");
+		if (Bton::IsButtonPressed(shootUrlButton)) OpenURL("https://pixabay.com/es/sound-effects/laser-gun-shot-sound-future-sci-fi-lazer-wobble-chakongaudio-174883");
+		if (Bton::IsButtonPressed(accelerateUrlButton)) OpenURL("https://pixabay.com/es/sound-effects/065110-seamless-rocket-booster-roar-amp-crackle-42487");
+		if (Bton::IsButtonPressed(destroyEnemyUrlButton)) OpenURL("https://pixabay.com/es/sound-effects/retro-explode-1-236678");
+		if (Bton::IsButtonPressed(loseLifeUrlButton)) OpenURL("https://pixabay.com/es/sound-effects/retro-hurt-1-236672");
+		if (Bton::IsButtonPressed(gainLifeUrlButton)) OpenURL("https://pixabay.com/es/sound-effects/coin-c-02-102844");
+		if (Bton::IsButtonPressed(backgroundsUrlButton)) OpenURL("https://mattwalkden.itch.io/lunar-battle-pack");
+	}
 
 	void Draw()
 	{
 		ClearBackground(BLACK);
 
+		Text::DrawCentered(developerText);
 
-		//Credits (Title)
-		{
-			const char* Developer = "Develpoed by: Nicolas Leon";
-			int textLength = MeasureText(Developer, titleFontSize);
+		Text::DrawCentered(spritesText, spritesUrlText);
 
-			int textX = static_cast<int> (screenCenterX - textLength / 2);
-			int textY = static_cast<int> (screenHeight / 6 - titleFontSize);
+		Text::DrawCentered(musicText, musicUrlText);
 
-			DrawText(Developer, textX, textY, titleFontSize, RED);
-		}
+		Text::DrawCentered(shootText);
+		Text::DrawCentered(shootUrlText);
 
-		//Sprites
-		{
-			const char* spritesText = "Sprites by MattWalkden";
-			const char* spritesUrl = "(mattwalkden.itch.io/lunar-battle-pack)";
+		Text::DrawCentered(accelerateText);
+		Text::DrawCentered(accelerateUrlText);
 
-			int spritesTextLength = MeasureText(spritesText, regularFontSize);
-			int spritesUrlLength = MeasureText(spritesUrl, regularFontSize);
-			int totalTextLength = spritesTextLength + spritesUrlLength + textSeparation;
+		Text::DrawCentered(destroyEnemyText);
+		Text::DrawCentered(destroyEnemyUrlText);
 
-			int textX = static_cast<int>(screenCenterX - totalTextLength / 2);
-			int textY = static_cast<int>(screenHeight / screenDivision * 3);
+		Text::DrawCentered(loseLifeText);
+		Text::DrawCentered(loseLifeUrlText);
 
-			DrawText(spritesText, textX, textY, regularFontSize, ORANGE);
-			DrawText(spritesUrl, textX + spritesTextLength + textSeparation, textY, regularFontSize, BLUE);
-		}
+		Text::DrawCentered(gainLifeText);
+		Text::DrawCentered(gainLifeUrlText);
 
-
-		//Music
-		{
-			const char* musicText = "Music by SunoAI";
-			const char* musicUrl = "(suno.com)";
-
-			int musicTextLength = MeasureText(musicText, regularFontSize);
-			int musicUrlLength = MeasureText(musicUrl, regularFontSize);
-			int totalTextLength = musicTextLength + musicUrlLength + textSeparation;
-
-			int textX = static_cast<int>(screenCenterX - totalTextLength / 2);
-			int textY = static_cast<int>(screenHeight / screenDivision * 4);
-
-			DrawText(musicText, textX, textY, regularFontSize, ORANGE);
-			DrawText(musicUrl, textX + musicTextLength + textSeparation, textY, regularFontSize, BLUE);
-		}
-
-
-		//Shoot
-		{
-			const char* shootText = "Shoot sound by CHAKONG";
-			const char* shootUrl = "(pixabay.com/es/sound-effects/laser-gun-shot-sound-future-sci-fi-lazer-wobble-chakongaudio-174883)";
-
-			int shootTextLength = MeasureText(shootText, regularFontSize);
-			int shootUrlLength = MeasureText(shootUrl, regularFontSize - textSeparation);
-
-			int textX1 = static_cast<int>(screenCenterX - shootTextLength / 2);
-			int textX2 = static_cast<int>(screenCenterX - shootUrlLength / 2);
-
-			int textY = static_cast<int>(screenHeight / screenDivision * 5);
-			int textY2 = textY + regularFontSize + textSeparation;
-
-			// Dibujar ambos textos
-			DrawText(shootText, textX1, textY, regularFontSize, ORANGE);
-			DrawText(shootUrl, textX2, textY2, regularFontSize - textSeparation, BLUE);
-		}
-
-
-		//Accelerate
-		{
-			const char* accelerateText = "Accelerate sound by Pixabay";
-			const char* accelerateUrl = "(pixabay.com/es/sound-effects/065110-seamless-rocket-booster-roar-amp-crackle-42487)";
-
-			int accelerateTextLength = MeasureText(accelerateText, regularFontSize);
-			int accelerateUrlLength = MeasureText(accelerateUrl, regularFontSize - textSeparation);
-
-			int textX1 = static_cast<int>(screenCenterX - accelerateTextLength / 2);
-			int textX2 = static_cast<int>(screenCenterX - accelerateUrlLength / 2);
-
-			int textY = static_cast<int>(screenHeight / screenDivision * 6.5);
-			int textY2 = textY + regularFontSize + textSeparation;
-
-			DrawText(accelerateText, textX1, textY, regularFontSize, ORANGE);
-			DrawText(accelerateUrl, textX2, textY2, regularFontSize - textSeparation, BLUE);
-		}
-
-
-		//DestroyEnemy
-		{
-			const char* destroyEnemyText = "Enemy destruction sound by Driken5482";
-			const char* destroyEnemyUrl = "(pixabay.com/es/sound-effects/retro-explode-1-236678)";
-
-			int destroyEnemyTextLength = MeasureText(destroyEnemyText, regularFontSize);
-			int destroyEnemyUrlLength = MeasureText(destroyEnemyUrl, regularFontSize - textSeparation);
-
-			int textX1 = static_cast<int>(screenCenterX - destroyEnemyTextLength / 2);
-			int textX2 = static_cast<int>(screenCenterX - destroyEnemyUrlLength / 2);
-
-			int textY = static_cast<int>(screenHeight / screenDivision * 8);
-			int textY2 = textY + regularFontSize + textSeparation;
-
-			DrawText(destroyEnemyText, textX1, textY, regularFontSize, ORANGE);
-			DrawText(destroyEnemyUrl, textX2, textY2, regularFontSize - textSeparation, BLUE);
-		}
-
-
-		//Lose life
-		{
-			const char* loseLifeText = "Lose life sound by Driken5482";
-			const char* loseLifeUrl = "(pixabay.com/es/sound-effects/retro-hurt-1-236672)";
-
-			int loseLifeTextLength = MeasureText(loseLifeText, regularFontSize);
-			int loseLifeUrlLength = MeasureText(loseLifeUrl, regularFontSize - textSeparation);
-
-			int textX1 = static_cast<int>(screenCenterX - loseLifeTextLength / 2);
-			int textX2 = static_cast<int>(screenCenterX - loseLifeUrlLength / 2);
-
-			int textY = static_cast<int>(screenHeight / screenDivision * 9.5);
-			int textY2 = textY + regularFontSize + textSeparation;
-
-			DrawText(loseLifeText, textX1, textY, regularFontSize, ORANGE);
-			DrawText(loseLifeUrl, textX2, textY2, regularFontSize - textSeparation, BLUE);
-		}
-
-
-		//Gain life
-		{
-			const char* gainLifeText = "Gain life sound by Driken5482";
-			const char* gainLifeUrl = "(pixabay.com/es/sound-effects/coin-c-02-102844)";
-
-			int gainLifeTextLength = MeasureText(gainLifeText, regularFontSize);
-			int gainLifeUrlLength = MeasureText(gainLifeUrl, regularFontSize - textSeparation);
-
-			int textX1 = static_cast<int>(screenCenterX - gainLifeTextLength / 2);
-			int textX2 = static_cast<int>(screenCenterX - gainLifeUrlLength / 2);
-
-			int textY = static_cast<int>(screenHeight / screenDivision * 11);
-			int textY2 = textY + regularFontSize + textSeparation;
-
-			DrawText(gainLifeText, textX1, textY, regularFontSize, ORANGE);
-			DrawText(gainLifeUrl, textX2, textY2, regularFontSize - textSeparation, BLUE);
-		}
-
+		Text::DrawCentered(backgroundsText, backgroundsUrlText);
 
 		Bton::Draw(returnToMenu, buttonFontSize);
 	}
