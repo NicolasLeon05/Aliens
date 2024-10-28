@@ -8,5 +8,5 @@ namespace Tutorial
 	void Load();
 	void Draw();
 
-	extern Bton::Button exit;
+	extern Bton::Button returnToMenu;
 }
