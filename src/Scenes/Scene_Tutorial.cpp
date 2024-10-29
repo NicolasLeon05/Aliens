@@ -53,12 +53,12 @@ namespace Tutorial
 
 		heightMultiplier++;
 
-		scorePositionText = Text::CreateText("Your score'll be on the top center of your screen", regularFontSize, { screenCenterX, screenHeight / screenDivision * heightMultiplier }, ORANGE);
+		scorePositionText = Text::CreateText("Your score will be on the top center of your screen", regularFontSize, { screenCenterX, screenHeight / screenDivision * heightMultiplier }, ORANGE);
 		Text::SetTextLength(scorePositionText);
 
 		heightMultiplier++;
 
-		lifePositionText = Text::CreateText("Your lives'll be on the top left of your screen", regularFontSize, { screenCenterX, screenHeight / screenDivision * heightMultiplier }, ORANGE);
+		lifePositionText = Text::CreateText("Your lives will be on the top left of your screen", regularFontSize, { screenCenterX, screenHeight / screenDivision * heightMultiplier }, ORANGE);
 		Text::SetTextLength(lifePositionText);
 
 		heightMultiplier++;

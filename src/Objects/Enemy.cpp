@@ -244,10 +244,8 @@ namespace Enemy
 			static_cast<float>(rand() % GetScreenHeight())
 		};
 
-		// Calcular el ángulo hacia la posición objetivo
 		float angle = CalculateAngleBetweenPoints(enemy.collisionShape.center, targetPosition);
 
-		// Establecer la velocidad
 		enemy.speed = CalculateVelocityFromAngle(angle, totalSpeed);
 
 	}
