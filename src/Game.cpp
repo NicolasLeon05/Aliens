@@ -193,6 +193,11 @@ namespace Game
 			else if (IsButtonPressed(GameOver::playAgain))
 			{
 				ResetGame();
+
+				StopMusicStream(music);
+				music = gameplayMusic;
+				PlayMusicStream(music);
+
 				currentScene = CurrentScene::Gameplay;
 			}
 			break;
