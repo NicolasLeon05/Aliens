@@ -25,6 +25,8 @@ using namespace std;
 
 namespace Gameplay
 {
+	Bton::Button pause;
+
 	static float r;
 	static float rotationAngle;
 
@@ -65,6 +67,8 @@ namespace Gameplay
 
 	void Load()
 	{
+		pause = Bton::Create("Pause", static_cast<float>(GetScreenWidth() - 180), 20, 160, 50);
+
 		PlayerNS::Load();
 		EnemyNS::Load();
 		background = LoadTexture("res/Backgrounds/GameplayBackground.png");
@@ -115,8 +119,19 @@ namespace Gameplay
 		PlayerNS::Draw();
 		EnemyNS::Draw();
 
-		DrawText((to_string(player.score)).c_str(), GetScreenWidth() - fontSize * 5, fontSize / 2, fontSize, MAGENTA);
-		DrawText((to_string(player.lives)).c_str(), fontSize / 2, fontSize / 2, fontSize, RED);
+		DrawText((to_string(player.score)).c_str(), 
+			GetScreenWidth() / 2, 
+			fontSize / 2, 
+			fontSize, 
+			MAGENTA);
+
+		DrawText((to_string(player.lives)).c_str(), 
+			fontSize / 2, 
+			fontSize / 2, 
+			fontSize, 
+			RED);
+
+		Bton::Draw(pause, fontSize);
 	}
 
 	void Unload()

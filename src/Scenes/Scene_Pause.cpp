@@ -2,7 +2,7 @@
 
 namespace Pause
 {
-	Bton::Button menu;
+	Bton::Button returnToMenu;
 	Bton::Button continuePlaying;
 
 	static int fontSize = 40;
@@ -19,21 +19,19 @@ namespace Pause
 		screenCenterX = static_cast<float>(GetScreenWidth() / 2);
 		buttonCenterX = screenCenterX - buttonWidth / 2;
 
-		menu = Bton::Create("Menu", buttonCenterX - buttonWidth / 2, static_cast<float>(screenHeight / 2), buttonWidth, buttonHeight);
-		continuePlaying = Bton::Create("Continue", buttonCenterX + buttonWidth / 2, static_cast<float>(screenHeight / 2), buttonWidth, buttonHeight);
+		returnToMenu = Bton::Create("Go to menu", buttonCenterX - buttonWidth, static_cast<float>(screenHeight / 2), buttonWidth, buttonHeight);
+		continuePlaying = Bton::Create("Continue", buttonCenterX + buttonWidth, static_cast<float>(screenHeight / 2), buttonWidth, buttonHeight);
 	}
 
 	void Draw()
 	{
-		ClearBackground(BLACK);
-
 		const char* title = "Game Paused";
 		int textLength = MeasureText(title, titleFontSize);
 		int textX = static_cast<int> (screenCenterX - textLength / 2);
 		int textY = static_cast<int> (screenHeight / 6 - titleFontSize / 2);
 		DrawText(title, textX, textY, titleFontSize, RED);
 
-		Bton::Draw(menu, fontSize);
+		Bton::Draw(returnToMenu, fontSize);
 		Bton::Draw(continuePlaying, fontSize);
 	}
 }

@@ -5,7 +5,7 @@ namespace Bton = Button;
 
 namespace Pause
 {
-	extern Bton::Button menu;
+	extern Bton::Button returnToMenu;
 	extern Bton::Button continuePlaying;
 
 	void Load();

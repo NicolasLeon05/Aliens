@@ -8,6 +8,7 @@
 #include "Scene_Gameplay.h"
 #include "Scene_Tutorial.h"
 #include "Scene_Credits.h"
+#include "Scene_Pause.h"
 #include "Button.h"
 #include "SoundManager.h"
 
@@ -73,6 +74,7 @@ namespace Game
 		Gameplay::Load();
 		Tutorial::Load();
 		Credits::Load();
+		Pause::Load();
 	}
 
 
@@ -114,9 +116,8 @@ namespace Game
 		{
 			gameplayOnGoing = Gameplay::Update();
 
-
-			if (IsKeyReleased(KEY_ESCAPE))
-				ResetGame(); //Change for a pause screen
+			if (IsButtonPressed(Gameplay::pause) || IsKeyReleased(KEY_ESCAPE))
+				currentScene = CurrentScene::Pause;
 
 			if (!gameplayOnGoing)
 				ResetGame(); //Change for result screen
@@ -124,14 +125,15 @@ namespace Game
 			break;
 		}
 
+
 		case Game::CurrentScene::Tutorial:
 		{
 			if (IsButtonPressed(Tutorial::returnToMenu))
-			{
 				currentScene = CurrentScene::MainMenu;
-			}
+
 			break;
 		}
+
 
 		case Game::CurrentScene::Credits:
 		{
@@ -143,6 +145,21 @@ namespace Game
 			}
 			break;
 		}
+
+
+		case Game::CurrentScene::Pause:
+		{
+			if (IsButtonPressed(Pause::returnToMenu))
+			{
+				currentScene = CurrentScene::MainMenu;
+			}
+			else if (IsButtonPressed(Pause::continuePlaying))
+			{
+				currentScene = CurrentScene::Gameplay;
+			}
+			break;
+		}
+
 
 		default:
 		{
@@ -172,15 +189,23 @@ namespace Game
 			break;
 		}
 
+
 		case Game::CurrentScene::Tutorial:
 		{
 			Tutorial::Draw();
 			break;
 		}
 
+
 		case Game::CurrentScene::Credits:
 		{
 			Credits::Draw();
+			break;
+		}
+
+		case Game::CurrentScene::Pause:
+		{
+			Pause::Draw();
 			break;
 		}
 
