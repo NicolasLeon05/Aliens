@@ -164,7 +164,7 @@ namespace Enemy
 		case Size::BigMetalPiece:
 		{
 			enemy.sprite.texture = bigMetalPieceTexture;
-			enemy.collisionShape.radius = bigMetalPieceSize;
+			enemy.collisionShape.radius = bigMetalPieceSize - 3;
 			enemy.sprite.scale = 2.2f;
 			enemy.score = 100;
 			break;
@@ -173,7 +173,7 @@ namespace Enemy
 		case Size::SmallMetalPiece:
 		{
 			enemy.sprite.texture = smallMetalPieceTexture;
-			enemy.collisionShape.radius = smallMetalPieceSize;
+			enemy.collisionShape.radius = smallMetalPieceSize - 1;
 			enemy.sprite.scale = 1.6f;
 			enemy.score = 50;
 			break;

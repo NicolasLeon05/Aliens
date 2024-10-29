@@ -47,7 +47,7 @@ namespace Player
 
 		//Collision
 		player.collisionShape.center = player.pos;
-		player.collisionShape.radius = 30;
+		player.collisionShape.radius = 25;
 
 		//Speed
 		player.maxAcceleration = 1000.0f;
