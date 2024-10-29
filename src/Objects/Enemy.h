@@ -3,8 +3,8 @@
 
 #include "raylib.h"
 
-#include "Sprite.h"
-#include "Circle.h"
+#include "Objects/Sprite.h"
+#include "Objects/Circle.h"
 
 using namespace std;
 

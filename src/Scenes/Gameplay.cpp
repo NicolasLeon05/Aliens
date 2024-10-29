@@ -6,10 +6,10 @@
 
 #include "raylib.h"
 
-#include "Player.h"
-#include "Enemy.h"
-#include "SoundManager.h"
-#include "Utils.h"
+#include "Objects/Player.h"
+#include "Objects/Enemy.h"
+#include "Utils/SoundManager.h"
+#include "Utils/Utils.h"
 
 
 namespace PlayerNS = Player;

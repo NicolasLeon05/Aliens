@@ -1,6 +1,6 @@
 #include "Tutorial.h"
 
-#include "Text.h"
+#include "Interface/Text.h"
 
 namespace Tutorial
 {

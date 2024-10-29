@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 
-#include "Text.h"
+#include "Interface/Text.h"
 
 using namespace std;
 

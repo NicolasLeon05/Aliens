@@ -1,6 +1,6 @@
 #include "Credits.h"
 
-#include "Text.h"
+#include "Interface/Text.h"
 
 namespace Credits
 {

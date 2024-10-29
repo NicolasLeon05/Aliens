@@ -1,5 +1,5 @@
 #pragma once
-#include "Bullet.h"
+#include "Objects/Bullet.h"
 
 namespace BulletNS = Bullet;
 using namespace BulletNS;

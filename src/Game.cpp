@@ -4,15 +4,15 @@
 
 #include "raylib.h"
 
-#include "MainMenu.h"
-#include "Gameplay.h"
-#include "Tutorial.h"
-#include "Credits.h"
-#include "Pause.h"
-#include "GameOver.h"
+#include "Scenes/MainMenu.h"
+#include "Scenes/Gameplay.h"
+#include "Scenes/Tutorial.h"
+#include "Scenes/Credits.h"
+#include "Scenes/Pause.h"
+#include "Scenes/GameOver.h"
 
-#include "Button.h"
-#include "SoundManager.h"
+#include "Interface/Button.h"
+#include "Utils/SoundManager.h"
 
 using namespace Button;
 using namespace SoundManager;

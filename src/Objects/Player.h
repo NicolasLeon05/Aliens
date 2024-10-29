@@ -2,9 +2,9 @@
 
 #include "raylib.h"
 
-#include "Sprite.h"
-#include "Circle.h"
-#include "Weapon.h"
+#include "Objects/Sprite.h"
+#include "Objects/Circle.h"
+#include "Objects/Weapon.h"
 
 namespace WeaponNS = Weapon;
 using namespace WeaponNS;
