@@ -223,7 +223,11 @@ namespace Game
 	void Unload()
 	{
 		Gameplay::Unload();
+		Tutorial::Unload();
+		Credits::Unload();
+
 		SoundManager::Unload();
+
 		CloseWindow();
 	}
 

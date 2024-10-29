@@ -8,6 +8,7 @@ namespace Credits
 	void Load();
 	void Update();
 	void Draw();
+	void Unload();
 
 	extern Bton::Button returnToMenu;
 }

@@ -2,6 +2,8 @@
 
 namespace Tutorial
 {
+	static Texture2D background;
+
 	Bton::Button returnToMenu;
 
 	static int fontSize = 40;
@@ -13,6 +15,8 @@ namespace Tutorial
 
 	void Load()
 	{
+		background = LoadTexture("res/Backgrounds/MenuBackground.png");
+
 		screenHeight = static_cast<float>(GetScreenHeight());
 		screenCenterX = static_cast<float>(GetScreenWidth() / 2);
 		buttonCenterX = screenCenterX - buttonWidth / 2;
@@ -24,6 +28,7 @@ namespace Tutorial
 	void Draw()
 	{
 		ClearBackground(BLACK);
+		DrawTexture(background, 0, 0, WHITE);
 
 		int titleFontSize = fontSize * 2;
 		const char* HowToPlay = "How to play";
@@ -33,5 +38,10 @@ namespace Tutorial
 		DrawText(HowToPlay, textX, textY, titleFontSize, RED);
 
 		Bton::Draw(returnToMenu, fontSize);
+	}
+
+	void Unload()
+	{
+		UnloadTexture(background);
 	}
 }
