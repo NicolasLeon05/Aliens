@@ -143,6 +143,11 @@ namespace Gameplay
 		UnloadTexture(background);
 	}
 
+	int GetRunScore()
+	{
+		return player.score;
+	}
+
 
 	//Player
 	void SetPlayerRotation()

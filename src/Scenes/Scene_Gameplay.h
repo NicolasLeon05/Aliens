@@ -11,4 +11,6 @@ namespace Gameplay
 	bool Update();
 	void Draw();
 	void Unload();
+
+	int GetRunScore();
 }
