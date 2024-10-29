@@ -56,7 +56,6 @@ namespace Gameplay
 
 	//Bullet
 	static void ManageBullets();
-	static void SetBulletRotation(BulletNS::Bullet& bullet);
 	static void MoveBullet(BulletNS::Bullet& bullet);
 	static void DeactivateBullet(BulletNS::Bullet& bullet);
 
@@ -300,7 +299,6 @@ namespace Gameplay
 		{
 			if (player.weapon.bullets[i].isActive)
 			{
-				SetBulletRotation(player.weapon.bullets[i]);
 				MoveBullet(player.weapon.bullets[i]);
 				DeactivateBullet(player.weapon.bullets[i]);
 
@@ -330,16 +328,6 @@ namespace Gameplay
 
 			}
 		}
-	}
-
-	void SetBulletRotation(BulletNS::Bullet& bullet)
-	{
-		Vector2 mousePosition = GetMousePosition();
-		Vector2 bulletPosition = bullet.collisionShape.center;
-
-		rotationAngle = CalculateAngleBetweenPoints(bulletPosition, mousePosition);
-
-		bullet.sprite.rotation = rotationAngle;
 	}
 
 	void MoveBullet(BulletNS::Bullet& bullet)
