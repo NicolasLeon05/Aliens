@@ -7,6 +7,7 @@ namespace MainMenu
 {
 	void Load();
 	void Draw();
+	void Unload();
 
 	extern Bton::Button play;
 	extern Bton::Button tutorial;

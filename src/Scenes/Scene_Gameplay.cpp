@@ -71,7 +71,9 @@ namespace Gameplay
 
 		PlayerNS::Load();
 		EnemyNS::Load();
+
 		background = LoadTexture("res/Backgrounds/GameplayBackground.png");
+
 		scoreToGetHp = baseScoreToGetHp;
 	}
 
@@ -116,6 +118,7 @@ namespace Gameplay
 	{
 		ClearBackground(BLACK);
 		DrawTexture(background, 0, 0, WHITE);
+
 		PlayerNS::Draw();
 		EnemyNS::Draw();
 
