@@ -63,6 +63,9 @@
     <ClCompile Include="src\Scenes\Scene_Pause.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="src\Scenes\Scene_GameOver.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -111,6 +114,9 @@
       <Filter>Interface</Filter>
     </ClInclude>
     <ClInclude Include="src\Scenes\Scene_Pause.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scenes\Scene_GameOver.h">
       <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
