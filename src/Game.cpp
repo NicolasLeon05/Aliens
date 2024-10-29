@@ -9,6 +9,8 @@
 #include "Scene_Tutorial.h"
 #include "Scene_Credits.h"
 #include "Scene_Pause.h"
+#include "Scene_GameOver.h"
+
 #include "Button.h"
 #include "SoundManager.h"
 
@@ -22,7 +24,7 @@ namespace Game
 
 	enum class CurrentScene
 	{
-		MainMenu, Gameplay, Tutorial, Credits, Pause, Results
+		MainMenu, Gameplay, Tutorial, Credits, Pause, GameOver
 	};
 
 	static CurrentScene currentScene;
@@ -75,6 +77,7 @@ namespace Game
 		Tutorial::Load();
 		Credits::Load();
 		Pause::Load();
+		GameOver::Load();
 	}
 
 
@@ -120,7 +123,7 @@ namespace Game
 				currentScene = CurrentScene::Pause;
 
 			if (!gameplayOnGoing)
-				ResetGame(); //Change for result screen
+				currentScene = CurrentScene::GameOver;
 
 			break;
 		}
@@ -151,10 +154,27 @@ namespace Game
 		{
 			if (IsButtonPressed(Pause::returnToMenu))
 			{
+				ResetGame();
 				currentScene = CurrentScene::MainMenu;
 			}
 			else if (IsButtonPressed(Pause::continuePlaying) || IsKeyReleased(KEY_ESCAPE))
 			{
+				currentScene = CurrentScene::Gameplay;
+			}
+			break;
+		}
+
+
+		case Game::CurrentScene::GameOver:
+		{
+			if (IsButtonPressed(GameOver::returnToMenu))
+			{
+				ResetGame();
+				currentScene = CurrentScene::MainMenu;
+			}
+			else if (IsButtonPressed(GameOver::playAgain))
+			{
+				ResetGame();
 				currentScene = CurrentScene::Gameplay;
 			}
 			break;
@@ -208,6 +228,14 @@ namespace Game
 			Pause::Draw();
 			break;
 		}
+
+
+		case Game::CurrentScene::GameOver:
+		{
+			GameOver::Draw();
+			break;
+		}
+
 
 		default:
 		{
