@@ -1,19 +1,23 @@
 #pragma once
 
+#include <iostream>
+
 #include "raylib.h"
+
+using namespace std;
 
 namespace Text
 {
 	struct Text
 	{
-		const char* content;
+		string content;
 		int fontSize;
 		int length;
 		Vector2 pos;
 		Color color;
 	};
 
-	Text CreateText(const char* content, int fontSize, Vector2 pos, Color color);
+	Text CreateText(string content, int fontSize, Vector2 pos, Color color);
 
 	void SetTextLength(Text& text);
 

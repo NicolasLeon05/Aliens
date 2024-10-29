@@ -2,7 +2,7 @@
 
 namespace Text
 {
-	Text CreateText(const char* content, int fontSize, Vector2 pos, Color color)
+	Text CreateText(string content, int fontSize, Vector2 pos, Color color)
 	{
 		Text newText;
 		newText.content = content;
@@ -15,19 +15,19 @@ namespace Text
 
 	void SetTextLength(Text& text)
 	{
-		text.length = MeasureText(text.content, text.fontSize);
+		text.length = MeasureText(text.content.c_str(), text.fontSize);
 	}
 
 
 	void Draw(Text text, int posX)
 	{
-		DrawText(text.content, posX, static_cast<int>(text.pos.y), text.fontSize, text.color);
+		DrawText(text.content.c_str(), posX, static_cast<int>(text.pos.y), text.fontSize, text.color);
 	}
 
 	void DrawCentered(Text text)
 	{
 		int screenCenterX = GetScreenWidth() / 2;
-		DrawText(text.content, screenCenterX - text.length / 2, static_cast<int>(text.pos.y), text.fontSize, text.color);
+		DrawText(text.content.c_str(), screenCenterX - text.length / 2, static_cast<int>(text.pos.y), text.fontSize, text.color);
 	}
 
 
