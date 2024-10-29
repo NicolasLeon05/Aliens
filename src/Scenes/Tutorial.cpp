@@ -1,4 +1,4 @@
-#include "Scene_Tutorial.h"
+#include "Tutorial.h"
 
 #include "Text.h"
 

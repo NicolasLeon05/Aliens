@@ -4,12 +4,12 @@
 
 #include "raylib.h"
 
-#include "Scene_MainMenu.h"
-#include "Scene_Gameplay.h"
-#include "Scene_Tutorial.h"
-#include "Scene_Credits.h"
-#include "Scene_Pause.h"
-#include "Scene_GameOver.h"
+#include "MainMenu.h"
+#include "Gameplay.h"
+#include "Tutorial.h"
+#include "Credits.h"
+#include "Pause.h"
+#include "GameOver.h"
 
 #include "Button.h"
 #include "SoundManager.h"

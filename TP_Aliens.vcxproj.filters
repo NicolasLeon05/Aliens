@@ -21,10 +21,10 @@
     <ClCompile Include="src\Game.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="src\Scenes\Scene_Gameplay.cpp">
+    <ClCompile Include="src\Scenes\Gameplay.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="src\Scenes\Scene_MainMenu.cpp">
+    <ClCompile Include="src\Scenes\MainMenu.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="src\Interface\Button.cpp">
@@ -39,7 +39,7 @@
     <ClCompile Include="src\Objects\Enemy.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
-    <ClCompile Include="src\Scenes\Scene_Tutorial.cpp">
+    <ClCompile Include="src\Scenes\Tutorial.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="src\Objects\Bullet.cpp">
@@ -54,16 +54,16 @@
     <ClCompile Include="src\Utils\Utils.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
-    <ClCompile Include="src\Scenes\Scene_Credits.cpp">
+    <ClCompile Include="src\Scenes\Credits.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="src\Interface\Text.cpp">
       <Filter>Interface</Filter>
     </ClCompile>
-    <ClCompile Include="src\Scenes\Scene_Pause.cpp">
+    <ClCompile Include="src\Scenes\Pause.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="src\Scenes\Scene_GameOver.cpp">
+    <ClCompile Include="src\Scenes\GameOver.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -71,10 +71,10 @@
     <ClInclude Include="src\Game.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="src\Scenes\Scene_Gameplay.h">
+    <ClInclude Include="src\Scenes\Gameplay.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="src\Scenes\Scene_MainMenu.h">
+    <ClInclude Include="src\Scenes\MainMenu.h">
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="src\Interface\Button.h">
@@ -92,7 +92,7 @@
     <ClInclude Include="src\Objects\Circle.h">
       <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="src\Scenes\Scene_Tutorial.h">
+    <ClInclude Include="src\Scenes\Tutorial.h">
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="src\Objects\Bullet.h">
@@ -107,16 +107,16 @@
     <ClInclude Include="src\Objects\Sprite.h">
       <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="src\Scenes\Scene_Credits.h">
+    <ClInclude Include="src\Scenes\Credits.h">
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="src\Interface\Text.h">
       <Filter>Interface</Filter>
     </ClInclude>
-    <ClInclude Include="src\Scenes\Scene_Pause.h">
+    <ClInclude Include="src\Scenes\Pause.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="src\Scenes\Scene_GameOver.h">
+    <ClInclude Include="src\Scenes\GameOver.h">
       <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>

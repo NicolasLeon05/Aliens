@@ -1,4 +1,4 @@
-#include "Scene_Pause.h"
+#include "Pause.h"
 
 namespace Pause
 {

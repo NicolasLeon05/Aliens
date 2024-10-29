@@ -1,4 +1,4 @@
-#include "Scene_Credits.h"
+#include "Credits.h"
 
 #include "Text.h"
 

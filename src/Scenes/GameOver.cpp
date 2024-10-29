@@ -1,4 +1,4 @@
-#include "Scene_GameOver.h"
+#include "GameOver.h"
 
 #include <iostream>
 #include <string>
