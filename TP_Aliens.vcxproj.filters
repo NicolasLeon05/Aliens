@@ -60,6 +60,9 @@
     <ClCompile Include="src\Interface\Text.cpp">
       <Filter>Interface</Filter>
     </ClCompile>
+    <ClCompile Include="src\Scenes\Scene_Pause.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -106,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="src\Interface\Text.h">
       <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scenes\Scene_Pause.h">
+      <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

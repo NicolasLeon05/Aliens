@@ -30,6 +30,7 @@
     <ClCompile Include="src\Scenes\Scene_Credits.cpp" />
     <ClCompile Include="src\Scenes\Scene_Gameplay.cpp" />
     <ClCompile Include="src\Scenes\Scene_MainMenu.cpp" />
+    <ClCompile Include="src\Scenes\Scene_Pause.cpp" />
     <ClCompile Include="src\Scenes\Scene_Tutorial.cpp" />
     <ClCompile Include="src\Utils\SoundManager.cpp" />
     <ClCompile Include="src\Utils\Utils.cpp" />
@@ -47,6 +48,7 @@
     <ClInclude Include="src\Scenes\Scene_Credits.h" />
     <ClInclude Include="src\Scenes\Scene_Gameplay.h" />
     <ClInclude Include="src\Scenes\Scene_MainMenu.h" />
+    <ClInclude Include="src\Scenes\Scene_Pause.h" />
     <ClInclude Include="src\Scenes\Scene_Tutorial.h" />
     <ClInclude Include="src\Utils\SoundManager.h" />
     <ClInclude Include="src\Utils\Utils.h" />
