@@ -153,7 +153,7 @@ namespace Game
 			{
 				currentScene = CurrentScene::MainMenu;
 			}
-			else if (IsButtonPressed(Pause::continuePlaying))
+			else if (IsButtonPressed(Pause::continuePlaying) || IsKeyReleased(KEY_ESCAPE))
 			{
 				currentScene = CurrentScene::Gameplay;
 			}
