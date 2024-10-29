@@ -11,4 +11,6 @@ namespace GameOver
 	void Load();
 	void Draw();
 	void Unload();
+
+	void SetScores(int maxScore, int runScore);
 }

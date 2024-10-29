@@ -34,6 +34,9 @@ namespace Game
 
 	static Music music;
 
+	static int maxScore;
+	static int runScore;
+
 	static void Load();
 	static void Update();
 	static void Draw();
@@ -62,6 +65,9 @@ namespace Game
 
 		gameShouldClose = false;
 		gameplayOnGoing = false;
+
+		maxScore = 0;
+		runScore = 0;
 
 		currentScene = CurrentScene::MainMenu;
 
@@ -120,10 +126,22 @@ namespace Game
 			gameplayOnGoing = Gameplay::Update();
 
 			if (IsButtonPressed(Gameplay::pause) || IsKeyReleased(KEY_ESCAPE))
+			{
 				currentScene = CurrentScene::Pause;
+			}
 
 			if (!gameplayOnGoing)
+			{
+				runScore = Gameplay::GetRunScore();
+
+				if (runScore > maxScore)
+				{
+					maxScore = runScore;
+				}
+
+				GameOver::SetScores(maxScore, runScore);
 				currentScene = CurrentScene::GameOver;
+			}
 
 			break;
 		}
@@ -253,6 +271,7 @@ namespace Game
 		Gameplay::Unload();
 		Tutorial::Unload();
 		Credits::Unload();
+		GameOver::Unload();
 
 		SoundManager::Unload();
 

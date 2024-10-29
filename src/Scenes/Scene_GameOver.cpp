@@ -1,14 +1,19 @@
 #include "Scene_GameOver.h"
 
+#include <iostream>
+#include <string>
+
 #include "Text.h"
+
+using namespace std;
 
 namespace GameOver
 {
 	static Texture2D background;
 
 	static Text::Text gameOver;
+	static Text::Text bestScore;
 	static Text::Text currentScore;
-	static Text::Text maxScore;
 
 	Bton::Button returnToMenu;
 	Bton::Button playAgain;
@@ -39,13 +44,14 @@ namespace GameOver
 
 		background = LoadTexture("res/Backgrounds/GameplayBackground.png");
 
+
 		gameOver = Text::CreateText("Game Over", titleFontSize, { screenCenterX, screenHeight / screenDivision * heightMultiplyer }, GREEN);
 		Text::SetTextLength(gameOver);
 
 		heightMultiplyer += 2;
 
-		maxScore = Text::CreateText("Best score: ", regularFontSize, { screenCenterX, screenHeight / screenDivision * heightMultiplyer }, GREEN);
-		Text::SetTextLength(maxScore);
+		bestScore = Text::CreateText("Best score: ", regularFontSize, {screenCenterX, screenHeight / screenDivision * heightMultiplyer}, GREEN);
+		Text::SetTextLength(bestScore);
 
 		heightMultiplyer += 2;
 
@@ -53,8 +59,8 @@ namespace GameOver
 		Text::SetTextLength(currentScore);
 
 
-		returnToMenu = Bton::Create("Menu", screenCenterX - buttonWidth, screenHeight / 6 * 5, buttonWidth, buttonHeight);
-		playAgain = Bton::Create("Play Again", screenCenterX + buttonWidth, screenHeight / 6 * 5, buttonWidth, buttonHeight);
+		returnToMenu = Bton::Create("Menu", buttonCenterX - buttonWidth, static_cast<float>(screenHeight / 6 * 5), buttonWidth, buttonHeight);
+		playAgain = Bton::Create("Play Again", buttonCenterX + buttonWidth, static_cast<float>(screenHeight / 6 * 5), buttonWidth, buttonHeight);
 	}
 
 	void Draw()
@@ -64,14 +70,27 @@ namespace GameOver
 		DrawTexture(background, 0, 0, WHITE);
 
 		Text::DrawCentered(gameOver);
-		Text::DrawCentered(maxScore);
+		Text::DrawCentered(bestScore);
 		Text::DrawCentered(currentScore);
 
 		Bton::Draw(returnToMenu, buttonFontSize);
+		Bton::Draw(playAgain, buttonFontSize);
 	}
 
 	void Unload()
 	{
 		UnloadTexture(background);
+	}
+
+	void SetScores(int maxScore, int runScore)
+	{
+		string bestScoreString = "Best score: " + to_string(maxScore);
+		string currentScoreString = "Score: " + to_string(runScore);
+
+		bestScore.content = bestScoreString;
+		bestScore.length = MeasureText(bestScore.content.c_str(), bestScore.fontSize);
+
+		currentScore.content = currentScoreString;
+		currentScore.length = MeasureText(currentScore.content.c_str(), currentScore.fontSize);
 	}
 }
