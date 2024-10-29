@@ -23,32 +23,32 @@ namespace Credits
 
 	Bton::Button returnToMenu;
 
-	Text::Text developerText;
-	Text::Text spritesText;
-	Text::Text spritesUrlText;
-	Text::Text musicText;
-	Text::Text musicUrlText;
-	Text::Text shootText;
-	Text::Text shootUrlText;
-	Text::Text accelerateText;
-	Text::Text accelerateUrlText;
-	Text::Text destroyEnemyText;
-	Text::Text destroyEnemyUrlText;
-	Text::Text loseLifeText;
-	Text::Text loseLifeUrlText;
-	Text::Text gainLifeText;
-	Text::Text gainLifeUrlText;
-	Text::Text backgroundsText;
-	Text::Text backgroundsUrlText;
+	static Text::Text developerText;
+	static Text::Text spritesText;
+	static Text::Text spritesUrlText;
+	static Text::Text musicText;
+	static Text::Text musicUrlText;
+	static Text::Text shootText;
+	static Text::Text shootUrlText;
+	static Text::Text accelerateText;
+	static Text::Text accelerateUrlText;
+	static Text::Text destroyEnemyText;
+	static Text::Text destroyEnemyUrlText;
+	static Text::Text loseLifeText;
+	static Text::Text loseLifeUrlText;
+	static Text::Text gainLifeText;
+	static Text::Text gainLifeUrlText;
+	static Text::Text backgroundsText;
+	static Text::Text backgroundsUrlText;
 
-	Bton::Button spritesUrlButton;
-	Bton::Button musicUrlButton;
-	Bton::Button shootUrlButton;
-	Bton::Button accelerateUrlButton;
-	Bton::Button destroyEnemyUrlButton;
-	Bton::Button loseLifeUrlButton;
-	Bton::Button gainLifeUrlButton;
-	Bton::Button backgroundsUrlButton;
+	static Bton::Button spritesUrlButton;
+	static Bton::Button musicUrlButton;
+	static Bton::Button shootUrlButton;
+	static Bton::Button accelerateUrlButton;
+	static Bton::Button destroyEnemyUrlButton;
+	static Bton::Button loseLifeUrlButton;
+	static Bton::Button gainLifeUrlButton;
+	static Bton::Button backgroundsUrlButton;
 
 	void Load()
 	{
@@ -61,7 +61,7 @@ namespace Credits
 
 		//Texts
 		{
-			developerText = Text::CreateText("Developed by: Nicolas Leon", titleFontSize, { screenCenterX, screenHeight / screenDivision * heightMultiplyer }, RED);
+			developerText = Text::CreateText("Developed by: Nicolas Leon", titleFontSize, { screenCenterX, screenHeight / screenDivision * heightMultiplyer - 10 }, GREEN);
 			Text::SetTextLength(developerText);
 
 			heightMultiplyer += 2;

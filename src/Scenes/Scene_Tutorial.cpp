@@ -6,13 +6,13 @@ namespace Tutorial
 {
 	static Texture2D background;
 
-	Text::Text howToPlayText;
-	Text::Text moveText;
-	Text::Text shootText;
-	Text::Text scorePositionText;
-	Text::Text lifePositionText;
-	Text::Text getLifeText;
-	Text::Text gameplayText;
+	static Text::Text howToPlayText;
+	static Text::Text moveText;
+	static Text::Text shootText;
+	static Text::Text scorePositionText;
+	static Text::Text lifePositionText;
+	static Text::Text getLifeText;
+	static Text::Text gameplayText;
 
 	Bton::Button returnToMenu;
 
