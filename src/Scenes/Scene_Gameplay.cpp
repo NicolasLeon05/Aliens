@@ -315,7 +315,7 @@ namespace Gameplay
 						{
 							PlaySound(destroyEnemySound);
 
-							player.score += enemies[i].score;
+							player.score += enemies[j].score;
 
 							if (enemies[i].size == Size::SmallMetalPiece)
 							{
