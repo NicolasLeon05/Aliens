@@ -149,7 +149,7 @@ namespace Game
 
 		case Game::CurrentScene::Tutorial:
 		{
-			if (IsButtonPressed(Tutorial::returnToMenu))
+			if (IsButtonPressed(Tutorial::returnToMenu) || IsKeyReleased(KEY_ESCAPE))
 				currentScene = CurrentScene::MainMenu;
 
 			break;
@@ -160,7 +160,7 @@ namespace Game
 		{
 			Credits::Update();
 
-			if (IsButtonPressed(Credits::returnToMenu))
+			if (IsButtonPressed(Credits::returnToMenu) || IsKeyReleased(KEY_ESCAPE))
 			{
 				currentScene = CurrentScene::MainMenu;
 			}
